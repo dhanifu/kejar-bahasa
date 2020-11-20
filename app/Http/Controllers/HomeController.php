@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $id = Auth::user()->id;
+        // Contoh
+        if (Auth::user()->hasRole('admin')) {
+            return view('admin.home', compact());
+        }
+        // Lanjut bila ada
     }
 }
