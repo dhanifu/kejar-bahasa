@@ -24,11 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        // Contoh
-        if (Auth::user()->hasRole('admin')) {
-            return view('admin.home', compact());
-        }
-        // Lanjut bila ada
+       return view('dashboard');
     }
 }

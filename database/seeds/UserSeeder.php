@@ -12,6 +12,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $admin = User::create([
+            'name' => 'admin',
+            'email' => 'admin@kejarbahasa.com',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        $admin->assignRole('admin');
+
+        $kasir = User::create([
+            'name' => 'user',
+            'email' => 'user@kejarbahasa.com',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        $kasir->assignRole('user');
     }
 }
