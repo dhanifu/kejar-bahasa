@@ -14,14 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
 
 Auth::routes();
 
+// Ini buat landing page aja
 Route::get('/home', 'HomeController@index')->name('home');
+// dan seterusnya
 
+
+// Dashboard user
+Route::prefix('dashboard')->name('user.')->middleware('role:user')->group(function(){
+    // 
+});
+
+
+// Admin
 Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function(){
-    Route::get('/', 'HomeController@home')->name('home');
-    Route::get('/home', 'HomeController@home')->name('home');    
+    Route::get('/', 'Admin\DashboardController@dashboard')->name('home');
+    Route::get('/home', 'Admin\DashboardController@dashboard')->name('home');
 });
