@@ -7,21 +7,21 @@
 
 ## About Kejar Bahasa
 
-Kejar Bahasa ​​is a place where you can learn anything online. There are lots of learning modules available here that you can learn for **Free!**
+Kejar Bahasa ​​is a place where you can learn anything online. There are lots of learning modules available here that you can learn.
 
 ## Kejar Bahasa Team
-#### RPL XII-3
-1. Agung Prasetio = **Sukasari 2**
-2. Arya Dhievha Rusdiana = **Tajur 5**
-3. Muhammad Ramdhani = **Ciawi 3**
-4. Yarra Raja Seraf = **Ciawi 2**
+
+1. Agung Prasetio
+2. Arya Dhievha Rusdiana
+3. Muhammad Ramdhani
+4. Yarra Raja Seraf
 
 ### Github Account
 
-- **[@agungprasetio18](https://github.com/agungprasetio18)**
-- **[@Dhievha03](https://github.com/Dhievha03)**
-- **[@dhanifu](https://github.com/dhanifu)**
-- **[@yarrars](https://github.com/yarrars)**
+-   **[@agungprasetio18](https://github.com/agungprasetio18)**
+-   **[@Dhievha03](https://github.com/Dhievha03)**
+-   **[@dhanifu](https://github.com/dhanifu)**
+-   **[@yarrars](https://github.com/yarrars)**
 
 ## License
 
