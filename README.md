@@ -11,17 +11,10 @@ Kejar Bahasa ​​is a place where you can learn anything online. There are lot
 
 ## Kejar Bahasa Team
 
-1. Agung Prasetio
-2. Arya Dhievha Rusdiana
-3. Muhammad Ramdhani
-4. Yarra Raja Seraf
-
-### Github Account
-
--   **[@agungprasetio18](https://github.com/agungprasetio18)**
--   **[@Dhievha03](https://github.com/Dhievha03)**
--   **[@dhanifu](https://github.com/dhanifu)**
--   **[@yarrars](https://github.com/yarrars)**
+1. **[Agung Prasetio](https://github.com/agungprasetio18)**
+2. **[Arya Dhievha Rusdiana](https://github.com/Dhievha03)**
+3. **[Muhammad Ramdhani](https://github.com/dhanifu)**
+4. **[Yarra Raja Seraf](https://github.com/yarrars)**
 
 ## License
 

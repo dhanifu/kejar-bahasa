@@ -128,7 +128,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'Kejar Bahasa'), '_').'_session'
+        Str::slug(env('kejar_bahasa', 'kejar_bahasa'), '_').'_session'
     ),
 
     /*
