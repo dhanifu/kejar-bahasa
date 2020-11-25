@@ -11,15 +11,10 @@
                         <!-- Logo icon -->
                         <a href="index.html">
                             <b class="logo-icon">
-                                <img src="{{asset('admin/assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo" />
+                                <img src="{{asset('admin/assets/images/kejarbahasa.png')}}" alt="homepage" class="dark-logo"  width="200" />
                                
                             </b>
                             <!--End Logo icon -->
-                            <!-- Logo text -->
-                            <span class="logo-text">
-                                <img src="{{asset('admin/assets/images/logo-text.png')}}" alt="homepage" class="dark-logo" />
-                                
-                            </span>
                         </a>
                     </div>
                     <!-- ============================================================== -->
