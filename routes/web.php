@@ -34,4 +34,11 @@ Route::name('user.')->middleware('role:user')->group(function(){
 Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function(){
     Route::get('/', 'Admin\DashboardController@dashboard')->name('home');
     Route::get('/home', 'Admin\DashboardController@dashboard')->name('home');
+
+    Route::prefix('category')->name('category.')->group(function(){
+        Route::get('/', 'Admin\CategoryController@index')->name('index');
+        Route::post('/', 'Admin\CategoryController@store')->name('store');
+        Route::put('/{categoryClass}/update', 'Admin\CategoryController@update')->name('update');
+        Route::delete('/{categoryClass}/delete', 'Admin\CategoryController@destroy')->name('destroy');
+    });
 });
