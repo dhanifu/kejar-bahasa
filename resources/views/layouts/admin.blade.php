@@ -15,6 +15,7 @@
     <link href="{{asset('admin/assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('admin/dist/css/style.min.css')}}" rel="stylesheet">
 </head>
@@ -30,16 +31,19 @@
         <div class="page-wrapper"> 
             <div class="page-breadcrumb">
                 <div class="row">
-                    <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">{{$greeting}}!</h3>
+                    <div class="col-8 align-self-center">
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">@yield('page-title')</h3>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Dashboard</a></li>
                                     @yield('breadcrumb')
                                 </ol>
                             </nav>
                         </div>
+                    </div>
+                    <div class="col-4">
+                        @yield('button')
                     </div>
                 </div>
             </div>
@@ -49,7 +53,7 @@
             </div>
            
             <!-- footer -->
-            <footer class="footer text-center text-muted">
+            <footer class="footer text-center text-muted shadow">
                 All Rights Reserved by Kejar Bahasa. Developed by <a
                     href="https://discord.gg/Uu6UYa5">Pos Ronda</a>.
             </footer>
@@ -79,6 +83,8 @@
     <script src="{{asset('admin/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js')}}"></script>
     <script src="{{asset('admin/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js')}}"></script>
     <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.min.js')}}"></script>
+    <script src="{{asset('admin/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
     @yield('js')
 </body>
 
