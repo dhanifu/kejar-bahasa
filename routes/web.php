@@ -24,8 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // dan seterusnya
 
 
-// Dashboard user
-Route::prefix('dashboard')->name('user.')->middleware('role:user')->group(function(){
+// user logged in
+Route::name('user.')->middleware('role:user')->group(function(){
     // 
 });
 
