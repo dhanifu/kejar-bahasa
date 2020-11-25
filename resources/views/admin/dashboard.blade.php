@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('page-title', $greeting."!")
+
 @section('content')
 <div class="card">
     <div class="card-body collapse show">
