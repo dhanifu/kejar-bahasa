@@ -152,6 +152,7 @@ class ClassController extends Controller
     }
 
     public function show($id){
-
+        $classs = Classs::find($id);
+        return view('admin.class.show', compact('classs'));
     }
 }
