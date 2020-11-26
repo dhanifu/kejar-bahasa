@@ -86,6 +86,7 @@
     <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.min.js')}}"></script>
     <script src="{{asset('admin/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @yield('js')
 </body>
 

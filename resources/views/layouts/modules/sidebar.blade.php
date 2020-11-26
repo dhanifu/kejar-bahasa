@@ -29,6 +29,17 @@
                         </span>
                     </a>
                 </li>
+                
+                {{-- KELAS --}}
+                <li class="sidebar-item @if(request()->routeIs('admin.class.*')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('admin.class.*')) active @endif" href="{{route('admin.class.index')}}"
+                        aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span
+                            class="hide-menu">Class
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
