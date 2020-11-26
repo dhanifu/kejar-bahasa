@@ -56,7 +56,8 @@
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Action">
                                         <button type="button" class="btn btn-secondary btn-sm"
-                                                data-toggle="modal" data-target="#modalEdit">
+                                                data-toggle="modal" data-target="#modalEdit"
+                                                onclick="editData({{$ct->id}})" data-name="{{$ct->name}}">
                                             <i class="far fa-edit"></i>
                                         </button>
                                         <form id="data-{{$ct->id}}" action="{{route('admin.category.destroy', $ct->id)}}" method="POST">
@@ -66,40 +67,6 @@
                                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{$ct->id}})">
                                             <i class="ti-trash"></i>
                                         </button>
-
-                                        {{-- MODAL EDIT --}}
-                                        <div class="modal fade" id="modalEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content" style="border-radius: 10px">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalEditLabel">Edit Kategori</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="{{ route('admin.category.update', $ct->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="modal-body">
-                                                            <div class="col-md-12 mt-2">
-                                                                <div class="row">
-                                                                    <label for="edit_name" class="col-md-3 col-form-label">Kategori</label>
-                                                                    <div class="col-md-9">
-                                                                        <input id="edit_name" type="text" class="form-control"
-                                                                            name="name" value="{{ $ct->name }}" placeholder="Nama Kategori">
-                                                                        <p class="text-danger">{{ $errors->first('name') }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-primary" id="btnEdit">Save</button>
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                          </div>
                                     </div>
                                 </td>
                             </tr>
@@ -144,13 +111,46 @@
             </form>
         </div>
     </div>
-  </div>
+</div>
+
+{{-- MODAL EDIT --}}
+<div class="modal fade" id="modalEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius: 10px">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditLabel">Edit Kategori</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('admin.category.update', $ct->id) }}" method="POST" id="editForm">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="col-md-12 mt-2">
+                        <div class="row">
+                            <label for="edit_name" class="col-md-3 col-form-label">Kategori</label>
+                            <div class="col-md-9">
+                                <input id="edit_name" type="text" class="form-control"
+                                    name="name" placeholder="Nama Kategori">
+                                <p class="text-danger">{{ $errors->first('name') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnEdit" onclick="editSubmit()">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 @endsection
 
 @section('js')
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $('#dataTable').DataTable();
 
@@ -162,17 +162,38 @@
             }
         });
 
-        $('#edit_name').keyup(function(){
-            if ($(this).val()) {
-                $('#btnEdit').attr('disabled', false);
-            }else{
-                $('#btnEdit').attr('disabled', true);
-            }
-        });
+        
 
         @if($errors->first('name'))
             $('.modal').modal('show');
         @endif
+
+        $('#modalEdit').on('show.bs.modal', function(e){
+            let button = $(e.relatedTarget);
+                name = button.data('name');
+                modal = $(this);
+
+            modal.find('.modal-body #edit_name').val(name);
+
+            $('#edit_name').keyup(function(){
+                if ($(this).val()) {
+                    $('#btnEdit').attr('disabled', false);
+                }else{
+                    $('#btnEdit').attr('disabled', true);
+                }
+            });
+        });
+
+        function editData(category_id){
+            let id = category_id;
+            let url = '{{ route("admin.category.update",":id") }}';
+            url = url.replace(':id', id);
+            console.log(url);
+            $('#editForm').attr('action', url);
+        }
+        function editSubmit(){
+            $('#editForm').submit();
+        }
 
         function confirmDelete(id){
             swal({
