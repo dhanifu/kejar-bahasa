@@ -64,9 +64,7 @@
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
                         <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
-                                rows="7" placeholder="Text here...">
-                                {{old('description')}}
-                        </textarea>
+                                rows="7" placeholder="Text here...">{{old('description')}}</textarea>
                         <p class="text-danger">{{ $errors->first('description') }}</p>
                     </div>
                     <div class="form-group">
