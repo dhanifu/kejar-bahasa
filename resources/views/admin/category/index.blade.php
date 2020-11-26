@@ -123,7 +123,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('admin.category.update', $ct->id) }}" method="POST" id="editForm">
+            <form  method="POST" id="editForm">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
