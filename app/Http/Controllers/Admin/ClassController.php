@@ -64,7 +64,7 @@ class ClassController extends Controller
                 'description' => $request->description,
             ]);
 
-            $file->storeAs('public/images/class', $filename);
+            $file->move(public_path('images/class'), $filename);
             
             return redirect()->route('admin.class.index')->with('success', 'Kelas Baru Ditambahkan');
         } else {
