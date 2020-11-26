@@ -41,4 +41,14 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::put('/{categoryClass}/update', 'Admin\CategoryController@update')->name('update');
         Route::delete('/{categoryClass}/delete', 'Admin\CategoryController@destroy')->name('destroy');
     });
+
+    Route::prefix('class')->name('class.')->group(function(){
+        Route::get('/', 'Admin\ClassController@index')->name('index');
+        Route::get('/new', 'Admin\ClassController@create')->name('create');
+        Route::post('/new', 'Admin\ClassController@store')->name('store');
+        Route::get('/{classs}/show', 'Admin\ClassController@show')->name('show');
+        Route::get('/{classs}/edit', 'Admin\ClassController@edit')->name('edit');
+        Route::put('/{classs}/update', 'Admin\ClassController@update')->name('update');
+        Route::delete('/{classs}/delete', 'Admin\ClassController@destroy')->name('destroy');
+    });
 });
