@@ -7,6 +7,7 @@ use App\CategoryClass;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ClassController extends Controller
 {
@@ -82,7 +83,7 @@ class ClassController extends Controller
     {
         $categories = CategoryClass::orderBy('name', 'ASC')->get();
 
-        return view('admin.class.edit', compact('categories'));
+        return view('admin.class.edit', compact('classs', 'categories'));
     }
 
     /**
@@ -94,7 +95,43 @@ class ClassController extends Controller
      */
     public function update(Request $request, Classs $classs)
     {
-        //
+        $this->validate($request, [
+            'category_id' => 'required|exists:category_classes,id',
+            'name' => 'required|string',
+            'picture' => 'image|mimes:jpeg,jpg,png',
+            'price' => 'required|integer',
+            'description' => 'required',
+        ]);
+
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $filename = date('dmY').'-'.Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+
+            $file->move(public_path('images/class'), $filename);
+            File::delete(public_path('images/class/'. $classs->picture));
+            $classs->update([
+                'category_id' => $request->category_id,
+                'name' => $request->name,
+                'picture' => $filename,
+                'price' => $request->price,
+                'description' => $request->description,
+            ]);
+
+
+            return redirect()->route('admin.class.index')->with('success', 'Kelas berhasil diubah');
+        } elseif (empty($request->hasFile('picture'))) {
+            $classs->update([
+                'category_id' => $request->category_id,
+                'name' => $request->name,
+                'picture' => $classs->picture,
+                'price' => $request->price,
+                'description' => $request->description,
+            ]);
+
+            return redirect()->route('admin.class.index')->with('success', 'Kelas berhasil diubah');
+        } else {
+            return redirect()->route('admin.class.index')->with('error', 'Kelas gagal diubah');
+        }
     }
 
     /**
@@ -106,6 +143,7 @@ class ClassController extends Controller
     public function destroy(Classs $classs)
     {
         if ($classs->category_count == 0) {
+            File::delete(public_path('images/class/'. $classs->picture));
             $classs->delete();
             return redirect()->back()->with('success', 'Kelas Berhasil Dihapus');
         }
