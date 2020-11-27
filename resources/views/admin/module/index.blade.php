@@ -60,7 +60,8 @@
                                         <button type="button" class="btn btn-secondary btn-sm">
                                             <i class="ti-eye"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning btn-sm">
+                                        <button type="button" class="btn btn-warning btn-sm"
+                                                onclick="document.location.href='{{route('admin.module.edit', $m->id)}}'">
                                             <i class="far fa-edit"></i>
                                         </button>
                                         <form id="data-{{$m->id}}" action="{{route('admin.module.destroy', $m->id)}}" method="POST">

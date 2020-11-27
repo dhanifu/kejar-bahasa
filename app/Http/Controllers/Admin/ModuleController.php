@@ -83,7 +83,8 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        //
+        $categories = CategoryClass::with('class')->orderBy('name', 'ASC')->get();
+        return view('admin.module.edit', compact('module', 'categories'));
     }
 
     /**
@@ -95,7 +96,25 @@ class ModuleController extends Controller
      */
     public function update(Request $request, Module $module)
     {
-        //
+        $this->validate($request, [
+            'class_id' => 'required|exists:classses,id',
+            'title' => 'required|string',
+            'content' => 'required'
+        ]);
+
+        try {
+            $module->update([
+                'class_id' => $request->class_id,
+                'title' => $request->title,
+                'content' => $request->content
+            ]);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()
+                    ->with('error', 'Modul gagal diupdate ('.$e.')');
+        }
+
+        return redirect()->route('admin.module.index')
+                ->with('success', 'Modul berhasil diupdate');
     }
 
     /**
