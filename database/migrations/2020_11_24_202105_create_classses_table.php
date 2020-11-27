@@ -18,7 +18,7 @@ class CreateClasssesTable extends Migration
             $table->string('code');
             $table->unsignedBigInteger('category_id');
             // Jika data di category_classes dihapus, maka data classes nya pun ikut terhapus
-            $table->foreign('category_id')->references('id')->on('category_classes')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('category_classes');
             $table->string('name');
             $table->string('picture');
             $table->integer('price');
