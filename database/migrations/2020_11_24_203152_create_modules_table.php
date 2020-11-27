@@ -18,7 +18,7 @@ class CreateModulesTable extends Migration
             $table->string('code');
             $table->unsignedBigInteger('class_id');
             $table->string('title');
-            $table->longText('content')->default('Comming soon');
+            $table->longText('content')->default('coming soon');
             $table->timestamps();
         });
     }
