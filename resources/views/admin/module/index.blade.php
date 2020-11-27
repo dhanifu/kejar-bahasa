@@ -49,13 +49,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($modules as $m)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$m->class->name}}</td>
+                                <td>{{$m->title}}</td>
+                                <td>{{$m->created_at->format('d M Y')}}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Action">
+                                        <button type="button" class="btn btn-secondary btn-sm">
+                                            <i class="ti-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-sm">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                        {{-- <form id="data-{{$kelas->id}}" action="{{route('admin.class.destroy', $kelas->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form> --}}
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="ti-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -66,5 +84,7 @@
 @endsection
 
 @section('js')
-    
+    <script>
+        $('#dataTable').DataTable();
+    </script>
 @endsection

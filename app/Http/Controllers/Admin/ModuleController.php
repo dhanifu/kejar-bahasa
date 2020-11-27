@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Module;
 use App\Classs;
+use App\CategoryClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -29,8 +30,8 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        $classes = Classs::orderBy('name', 'ASC')->get();
-        return view('admin.module.create', compact('classes'));
+        $categories = CategoryClass::with('class')->orderBy('name', 'ASC')->get();
+        return view('admin.module.create', compact('categories'));
     }
 
     /**
