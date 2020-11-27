@@ -44,7 +44,7 @@
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 @if (Auth::user()->picture)
-                                <img src="{{asset('gambar/'.Auth::user()->picture)}}" alt="user" class="rounded-circle"
+                                <img src="{{asset('images/profile/'.Auth::user()->picture)}}" alt="user" class="rounded-circle"
                                     width="40">
                                 @else
                                 <img src="{{asset('admin/assets/images/users/d3.jpg')}}" alt="user" class="rounded-circle"
@@ -55,7 +55,7 @@
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="{{route('admin.profile.index', Auth::user()->id)}}"><i data-feather="user"
+                                <a class="dropdown-item" href="{{route('admin.profile.index')}}"><i data-feather="user"
                                         class="svg-icon mr-2 ml-1"></i>
                                     My Profile</a>
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"

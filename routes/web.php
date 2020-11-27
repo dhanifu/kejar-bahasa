@@ -55,6 +55,6 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
     Route::prefix('profile')->name('profile.')->group(function(){
         Route::get('/', 'Admin\ProfileController@index')->name('index');
         Route::put('/{user}/update', 'Admin\ProfileController@update')->name('update');
-        Route::delete('/{user}/delete', 'Admin\ProfileController@destroy')->name('destroy');
+        Route::patch('/{user}/update', 'Admin\ProfileController@updatePassword')->name('updatePassword');
     });
 });
