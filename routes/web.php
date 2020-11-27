@@ -55,6 +55,7 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
     Route::prefix('module')->name('module.')->group(function(){
         Route::get('/', 'Admin\ModuleController@index')->name('index');
         Route::get('/new', 'Admin\ModuleController@create')->name('create');
+        Route::post('/new', 'Admin\ModuleController@store')->name('store');
     });
 
     Route::prefix('profile')->name('profile.')->group(function(){

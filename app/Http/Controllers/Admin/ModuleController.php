@@ -42,7 +42,26 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'class_id' => 'required|exists:classses,id',
+            'title' => 'required|string',
+            'content' => 'required'
+        ]);
+        
+        $code = date('dmY') . Str::random(14) . strtolower(substr($request->title, 0, 3));
+
+        $module = Module::create([
+            'code' => $code,
+            'class_id' => $request->class_id,
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
+
+        if ($module->exists) {
+            return redirect()->route('admin.module.index')->with('success', 'Modul berhasil dibuat');
+        } else {
+            return redirect()->back()->with('error', 'Modul gagal dibuat');
+        }
     }
 
     /**
