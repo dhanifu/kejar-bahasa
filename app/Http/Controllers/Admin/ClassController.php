@@ -151,8 +151,7 @@ class ClassController extends Controller
         return redirect()->back()->with('error', 'Kelas Mempunyai Modul');
     }
 
-    public function show($id){
-        $classs = Classs::find($id);
+    public function show(Classs $classs){
         return view('admin.class.show', compact('classs'));
     }
 }
