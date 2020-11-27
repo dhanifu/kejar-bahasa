@@ -106,6 +106,12 @@ class ModuleController extends Controller
      */
     public function destroy(Module $module)
     {
-        //
+        $module->delete();
+
+        if ($module->exists) {
+            return redirect()->back()->with('error', 'Modul tidak terhapus');
+        }
+        
+        return redirect()->back()->with('success', 'Modul berhasil dihapus');
     }
 }

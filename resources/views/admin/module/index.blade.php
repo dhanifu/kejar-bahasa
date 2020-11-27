@@ -63,11 +63,12 @@
                                         <button type="button" class="btn btn-warning btn-sm">
                                             <i class="far fa-edit"></i>
                                         </button>
-                                        {{-- <form id="data-{{$kelas->id}}" action="{{route('admin.class.destroy', $kelas->id)}}" method="POST">
+                                        <form id="data-{{$m->id}}" action="{{route('admin.module.destroy', $m->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                        </form> --}}
-                                        <button type="button" class="btn btn-danger btn-sm">
+                                        </form>
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                                onclick="confirmDelete({{$m->id}})">
                                             <i class="ti-trash"></i>
                                         </button>
                                     </div>
@@ -86,5 +87,19 @@
 @section('js')
     <script>
         $('#dataTable').DataTable();
+
+        function confirmDelete(id){
+            swal({
+                title: "Apakah anda yakin?",
+                text: "Setelah dihapus, Anda tidak akan bisa membatalkannya!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $('#data-' + id).submit();
+                }
+            });
+        }
     </script>
 @endsection

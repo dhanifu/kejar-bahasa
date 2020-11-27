@@ -56,6 +56,7 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::get('/', 'Admin\ModuleController@index')->name('index');
         Route::get('/new', 'Admin\ModuleController@create')->name('create');
         Route::post('/new', 'Admin\ModuleController@store')->name('store');
+        Route::delete('/{module}/delete', 'Admin\ModuleController@destroy')->name('destroy');
     });
 
     Route::prefix('profile')->name('profile.')->group(function(){
