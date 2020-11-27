@@ -13,6 +13,10 @@ class Classs extends Model
     }
 
     public function module(){
-        return $this->hasMany(Module::class);
+        return $this->hasMany('App\Module', 'class_id');
+    }
+
+    public function purchased(){
+        return $this->hasMany('App\Purchased', 'class_id');
     }
 }
