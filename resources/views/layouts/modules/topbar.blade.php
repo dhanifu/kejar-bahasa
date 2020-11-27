@@ -9,7 +9,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="{{route('admin.home')}}">
                             <b class="logo-icon">
                                 <img src="{{asset('admin/assets/images/kejarbahasa.png')}}" alt="homepage" class="dark-logo"  width="200" />
                                
