@@ -65,11 +65,12 @@ class CategoryController extends Controller
      */
     public function destroy(CategoryClass $categoryClass)
     {
-        if ($categoryClass->class_count == 0) {
+        $class = $categoryClass->with(['class'])->count();
+        if ($class == 0) {
             $categoryClass->delete();
             return redirect()->back()->with('success', 'Kategori Berhasil Dihapus');
         }
 
-        return redirect()->back()->with('error', 'Kategori Gagal Dihapus, karena memiliki masih Class');
+        return redirect()->back()->with('error', 'Kategori tidak dapat dihapus, karena masih memiliki Kelas');
     }
 }
