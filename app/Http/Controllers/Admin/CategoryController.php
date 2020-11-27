@@ -70,6 +70,6 @@ class CategoryController extends Controller
             return redirect()->back()->with('success', 'Kategori Berhasil Dihapus');
         }
 
-        return redirect()->back()->with('error', 'Kategori Gagal Dihapus, karena memiliki masih Class');;
+        return redirect()->back()->with('error', 'Kategori Gagal Dihapus, karena memiliki masih Class');
     }
 }
