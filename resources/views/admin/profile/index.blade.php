@@ -43,8 +43,9 @@
 </div>
 @endif
 <div class="card overflow-hidden">
+    <div class="card-body">
     <div class="row no-gutters row-bordered row-border-light">
-        <div class="col-md-3 pt-0">
+        <div class="col-md-3 pr-3">
             <div class="list-group list-group-flush account-settings-links">
                 <a class="list-group-item list-group-item-action active" data-toggle="list"
                     href="#account-general">General</a>
@@ -95,7 +96,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">E-mail</label>
-                                <input type="text" class="form-control mb-1" nam="email" value="{{Auth::user()->email}}"
+                                <input type="text" class="form-control mb-1" name="email" value="{{Auth::user()->email}}"
                                     readonly>
                             </div>
                         </div>
@@ -107,25 +108,25 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="account-change-password">
-                <form id="form" action="{{ route('admin.profile.updatePassword', Auth::user()->id) }}" method="post"
+                <form id="form" action="{{ route('admin.profile.changePassword') }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                     <div class="card-body pb-2">
                         <div class="form-group">
                             <label class="form-label">Current password</label>
-                            <input type="password" id="currentpass" class="form-control">
-                            <small></small>
+                            <input type="password" name="password" id="currentpass" class="form-control @error('password') is-invalid @enderror">
+                            <small>{{$errors->first('password')}}</small>
                         </div>
                         <div class="form-group">
                             <label class="form-label">New password</label> 
-                            <input type="password" id="password1"class="form-control">
-                            <small></small>
+                            <input type="password" name="new-password" id="password"class="form-control @error('new-password') is-invalid @enderror'">
+                            <small>{{$errors->first('new-password')}}</small>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Repeat new password</label>
-                            <input type="password" id="password2"class="form-control">
-                            <small></small>
+                            <input type="password" name="new-password-confirmation" id="password2" class="form-control @error('new-password-confirmation') is-invalid @enderror">
+                            <small>{{$errors->first('new-password-confirmation')}}</small>
                         </div>
 
                         <div class="text-right mt-3">
@@ -137,6 +138,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
