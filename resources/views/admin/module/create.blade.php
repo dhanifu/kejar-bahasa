@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label for="title">Judul</label>
                                     <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" 
-                                            placeholder="Judul">
+                                            placeholder="Judul" value="{{old('title')}}">
                                     <p class="text-danger">{{$errors->first('title')}}</p>
                                 </div>
                             </div>
