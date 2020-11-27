@@ -57,7 +57,8 @@
                                 <td>{{$m->created_at->format('d M Y')}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Action">
-                                        <button type="button" class="btn btn-secondary btn-sm">
+                                        <button type="button" class="btn btn-secondary btn-sm"
+                                                onclick="document.location.href='{{route('admin.module.show', $m->id)}}'">
                                             <i class="ti-eye"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning btn-sm"

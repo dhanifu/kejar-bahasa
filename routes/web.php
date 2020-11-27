@@ -56,6 +56,7 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::get('/', 'Admin\ModuleController@index')->name('index');
         Route::get('/new', 'Admin\ModuleController@create')->name('create');
         Route::post('/new', 'Admin\ModuleController@store')->name('store');
+        Route::get('/{module}/preview', 'Admin\ModuleController@show')->name('show');
         Route::get('/{module}/edit', 'Admin\ModuleController@edit')->name('edit');
         Route::put('/{module}/edit', 'Admin\ModuleController@update')->name('update');
         Route::delete('/{module}/delete', 'Admin\ModuleController@destroy')->name('destroy');

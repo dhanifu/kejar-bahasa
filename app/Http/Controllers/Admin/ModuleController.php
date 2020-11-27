@@ -72,7 +72,7 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        return view('admin.module.show', compact('module'));
     }
 
     /**
