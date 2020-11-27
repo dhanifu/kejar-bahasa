@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -14,7 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.profile.index');
     }
 
     /**
@@ -67,9 +69,36 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'picture' => 'image|mimes:jpeg,jpg,png',
+        ]);
+            
+        if ($request->hasFile('picture')) {
+           
+            $file = $request->file('picture');
+            $filename = date('dmY').'-'.Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+            
+            $file->move(public_path('images/profile'), $filename);
+            File::delete(public_path('images/profile/'. $user->picture));
+            $user->update([
+                'name' => $request->name,
+                'picture' => $filename,
+            ]);
+
+            return redirect()->route('admin.profile.index')->with('success', 'profile berhasil diubah');
+        } elseif (empty($request->hasFile('picture'))) {
+            $user->update([
+                'name' => $request->name,
+                'picture' => $user->picture,
+            ]);
+
+            return redirect()->route('admin.profile.index')->with('success', 'profile berhasil diubah');
+        } else {
+            return redirect()->route('admin.profile.index')->with('error', 'profile gagal diubah');
+        }
     }
 
     /**
