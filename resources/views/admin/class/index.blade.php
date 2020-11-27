@@ -106,9 +106,6 @@
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    swal("Berhasil dihapus!", {
-                        icon: "success",
-                    });
                     $('#data-' + id).submit();
                 }
             });
