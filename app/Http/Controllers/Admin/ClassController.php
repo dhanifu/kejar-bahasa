@@ -142,13 +142,14 @@ class ClassController extends Controller
      */
     public function destroy(Classs $classs)
     {
-        if ($classs->category_count == 0) {
+        $module = $classs->with('module')->count();
+        if ($module == 0) {
             File::delete(public_path('images/class/'. $classs->picture));
             $classs->delete();
             return redirect()->back()->with('success', 'Kelas Berhasil Dihapus');
         }
 
-        return redirect()->back()->with('error', 'Kelas Mempunyai Modul');
+        return redirect()->back()->with('error', 'Kelas ini tidak dapat dihapus, karena masih memiliki modul');
     }
 
     public function show(Classs $classs){

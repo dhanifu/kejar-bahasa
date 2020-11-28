@@ -17,10 +17,8 @@ class CreateModulesTable extends Migration
             $table->id();
             $table->string('code');
             $table->unsignedBigInteger('class_id');
-            // Jika data di classes dihapus, maka data  module nya pun ikut terhapus
-            $table->foreign('class_id')->references('id')->on('classses');
             $table->string('title');
-            $table->longText('content')->default('Comming soon');
+            $table->longText('content')->default('coming soon');
             $table->timestamps();
         });
     }

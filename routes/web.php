@@ -52,9 +52,19 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::delete('/{classs}/delete', 'Admin\ClassController@destroy')->name('destroy');
     });
 
+    Route::prefix('module')->name('module.')->group(function(){
+        Route::get('/', 'Admin\ModuleController@index')->name('index');
+        Route::get('/new', 'Admin\ModuleController@create')->name('create');
+        Route::post('/new', 'Admin\ModuleController@store')->name('store');
+        Route::get('/{module}/preview', 'Admin\ModuleController@show')->name('show');
+        Route::get('/{module}/edit', 'Admin\ModuleController@edit')->name('edit');
+        Route::put('/{module}/edit', 'Admin\ModuleController@update')->name('update');
+        Route::delete('/{module}/delete', 'Admin\ModuleController@destroy')->name('destroy');
+    });
+
     Route::prefix('profile')->name('profile.')->group(function(){
         Route::get('/', 'Admin\ProfileController@index')->name('index');
         Route::put('/{user}/update', 'Admin\ProfileController@update')->name('update');
-        Route::patch('/{user}/update', 'Admin\ProfileController@updatePassword')->name('updatePassword');
+        Route::patch('/change-password', 'Admin\ProfileController@changePassword')->name('changePassword');
     });
 });

@@ -16,11 +16,7 @@ class CreatePurchasedsTable extends Migration
         Schema::create('purchaseds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            // Jika data di users dihapus, maka data purchaseds nya pun ikut terhapus
-            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('class_id');
-            // Jika data di classes dihapus, maka purchaseds nya pun ikut terhapus
-            $table->foreign('class_id')->references('id')->on('classses');
             $table->timestamps();
         });
     }

@@ -40,6 +40,17 @@
                         </span>
                     </a>
                 </li>
+
+                {{-- Module --}}
+                <li class="sidebar-item @if(request()->routeIs('admin.module.*')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('admin.module.*')) active @endif" href="{{route('admin.module.index')}}"
+                        aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span
+                            class="hide-menu">Module
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

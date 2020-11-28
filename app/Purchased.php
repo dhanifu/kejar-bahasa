@@ -12,6 +12,6 @@ class Purchased extends Model
         return $this->belongsTo(User::class);
     }
     public function class(){
-        return $this->belongsTo(Classs::class);
+        return $this->belongsTo('App\Classs', 'class_id');
     }
 }
