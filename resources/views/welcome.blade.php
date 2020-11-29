@@ -1,100 +1,251 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('title','Kejar Bahasa')
 
-        <title>Laravel</title>
+@section('style')
+    <style>
+        .section1{
+            padding: 10%;
+            padding-top: 0;
+        }
+        .section1 h1{
+            margin-bottom:20px;
+            letter-spacing: 2px;
+        }
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        .content{
+            transform: translateY(30%);
+        }
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
+        .content p{
+            font-size: 20px;
+        }
+
+        .content h2, h3{
+            text-align: center;
+            letter-spacing: 3px;
+        }
+
+        .section1 .row{
+            margin-top: 10%;
+        }
+        .img {
+            text-align: center;
+        }
+        .img img{
+            width: 100%;
+        }
+
+        .class-section h1{
+            text-align: center;
+        }
+
+        .footer {
+            margin: auto;
+            margin-top: 100px;
+            width: 100%;
+            padding: 50px;
+            background-color: #24252a;
+        }
+        .footer h1, .footer h3 {
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            color: #ffff;
+            letter-spacing: 2px;
+        }
+
+        .footer h2{
+            font-weight: 400;
+        }
+
+        .center { 
+            text-align: center; 
+        }
+
+        .center a{
+            font-size: 20px;
+        }
+
+        .footer-2 {
+            margin: auto;
+            width: 100%;
+            padding: 50px;
+        }
+
+        .footer-2 .img-footer img{
+            margin-left: 50px;
+            width: 250px;
+            height: 68px;
+        }
+
+        .copyright{
+            width: 100%;
+            padding: 2px;
+            background-color:#f4f4f2;
+            border: .5px solid rgb(187, 186, 186);
+        }
+
+        .copyright p{
+            margin: auto;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .footer h1{
+            font-weight: 600;
+        }
+
+        .text-footer{
+            margin-top: -2%;
+        }
+
+        @media(max-width:1024px){
+            h1{
+                font-size: 25px;
+            }
+            h2,h3{
+                font-size: 20px;
+                letter-spacing: 2px;
+                margin-top: 10px;
+            }
+            h4{
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .section1{
+                margin-top: 100px;
             }
 
-            .full-height {
-                height: 100vh;
+            .content{
+                transform: translateY(0);
             }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
+            p, a{
+                font-size: 12px;
             }
 
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
+            .img-footer{
                 text-align: center;
             }
 
-            .title {
-                font-size: 84px;
+            .footer-2 .img-footer img{
+                margin-left: 0;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
+            .text-footer{
+                margin-top: 2%;
             }
+        }
+ 
+    </style>    
+@endsection
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Kejar Bahasa
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+@section('content')
+    <div class="section1">
+        <div class="row">
+            <div class="content col-md-6">
+                <h1>Kejar Bahasa</h1>
+                <p>Kejar Bahasa merupakan platform untuk meningkatkan kemampuan dibidang akademik dengan modul pelatihan terbaik yang ditujukan untuk pelajar, mahasiswa, dan pengajar di Indonesia</p>    
+                <a class="btn btn-primary" href="#" role="button">Register</a>
+            </div>
+            <div class="col-md-6 img">
+                <img src="user/image/landingpage.png" class="img-fluid" alt="..."/>
             </div>
         </div>
-    </body>
-</html>
+        <div class="row">
+            <div class="col-md-6 img">
+                <img src="user/image/landingpage2.png" class="img-fluid" alt="..."/>
+            </div>
+            <div class="content col-md-6">
+                <h2>Mulai pelajaran Anda</h2>
+                <h2>from Zero to Hero</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="class-section">
+            <div class="container">
+                <h1>Kelas Terbaru</h1>
+                <div class="row mt-4">
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="card">
+                            <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4>Judul</h4>
+                                </div>
+                                <p>Deskripsi</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="card">
+                            <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4>Judul</h4>
+                                </div>
+                                <p>Deskripsi</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="card">
+                            <img src="user/image/kopi.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4>Judul</h4>
+                                </div>
+                                <p>Deskripsi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="card">
+                            <img src="user/image/minder.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4>Judul</h4>
+                                </div>
+                                <p>Deskripsi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+        </div>
+    </div>
+    <div class="footer">
+        <h1>Belajar Yuk!</h1>
+        <h3 class="mt-4">dunia menunggu Anda untuk</h3>
+        <h3>menggapai cita-cita</h3>
+        <div class="center mt-4">
+            <a href="#" class="btn btn-primary">Daftar Sekarang</a>
+        </div>
+    </div>
+@endsection
+
+@section('footer')
+    <div class="footer-2">
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-6 img-footer">
+                <img src="user/image/logo1.png" class="img-fluid" alt=""/>
+            </div>
+            <div class="content text-footer col-md-6">
+                <h3>Hubungi Kami</h3>
+                <p class="center">@kejarbahasa.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>copyright &copy; 2020 - Kejar Bahasa</p>
+    </div>
+@endsection
