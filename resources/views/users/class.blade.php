@@ -67,66 +67,22 @@
             <div class="container">
                 <h1 class="title">Kelas</h1>
                 <div class="row py-4">
+                    @foreach($classes as $kelas)
                     <div class="col-md-3 col-sm-6 mb-3">
                         <div class="card">
-                            <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
+                            <img src="{{ asset('images/class/'.$kelas->picture) }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h4>Judul</h4>
+                                    <h4>{{ $kelas->title }}</h4>
                                 </div>
-                                <p>Deskripsi</p>
+                                <p>{{ $kelas->description }}</p>
                             </div>
                             <div class="card-footer text-right">
-                                <a href="/kelas/preview" class="btn btn-primary">Lihat</a>
+                                <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary">Lihat</a>
                             </div>
                         </div>
                     </div>
-
-                
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
-                            <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h4>Judul</h4>
-                                </div>
-                                <p>Deskripsi</p>
-                            </div>
-                            <div class="card-footer text-right">
-                                <a href="#" class="btn btn-primary">Lihat</a>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
-                            <img src="user/image/kopi.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h4>Judul</h4>
-                                </div>
-                                <p>Deskripsi</p>
-                            </div>
-                            <div class="card-footer text-right">
-                                <a href="#" class="btn btn-primary">Lihat</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
-                            <img src="user/image/minder.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h4>Judul</h4>
-                                </div>
-                                <p>Deskripsi</p>
-                            </div>
-                            <div class="card-footer text-right">
-                                <a href="#" class="btn btn-primary">Lihat</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
