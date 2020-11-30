@@ -21,9 +21,12 @@ Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 
 
-// user logged in
-Route::name('user.')->middleware('role:user')->group(function(){
-    // 
+
+Route::name('user.')->group(function(){
+    Route::prefix('class')->name('class.')->group(function(){
+        Route::get('/', 'ClassController@index')->name('index');
+        Route::get('/{code}', 'ClassController@class')->name('class');
+    });
 });
 
 

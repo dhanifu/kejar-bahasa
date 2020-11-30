@@ -41,8 +41,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-md-4{{ request()->is('kelas') ? ' active' : ''}}">
-                    <a class="nav-link" href="/kelas">Kelas <span class="sr-only">(current)</span></a>
+                <li class="nav-item mr-md-4{{ request()->is('class') ? ' active' : ''}}">
+                    <a class="nav-link" href="{{ route('user.class.index') }}">Kelas <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mr-md-4{{ request()->is('kontak') ? ' active' : ''}}">
                     <a class="nav-link" href="#">Contact</a>
