@@ -56,17 +56,23 @@
                 <div class="card-header bg-white" style="height: 50px;"></div>
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="../user/image/adinda.jpg" class="card-img" alt="...">
+                        <img src="{{ asset('images/class/'.$class->picture) }}" class="card-img" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h2 class="card-title">Judul</h2>
-                            <p class="card-text mt-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis aliquam voluptatum culpa eius laudantium modi! Non, provident quisquam blanditiis ratione cumque laudantium veritatis et consequatur accusamus pariatur ad maiores sint!</p>
+                            <h2 class="card-title">{{ $class->name }}</h2>
+                            <p class="card-text mt-4">{{ $class->description }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-right bg-white" data-toggle="modal" data-target="#exampleModal">
-                    <a href="#" class="btn btn-success">Rp.5000</a>
+                <div class="card-footer text-right bg-white">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                        @if ($class->price == 0)
+                            Free
+                        @else
+                            Rp {{ number_format($class->price) }}
+                        @endif
+                    </button>
                 </div>
             </div>
         </div>
