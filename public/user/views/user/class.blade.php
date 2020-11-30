@@ -13,20 +13,24 @@
             letter-spacing: 2px;
         }   
 
-        .copyright{
-            width: 100%;
-            padding: 2px;
-            background-color:#f4f4f2;
-            border: .5px solid rgb(187, 186, 186);
-        }
-
-        .copyright p{
-            margin: auto;
-            padding: 15px;
-            text-align: center;
-        }
-
         .btn-primary{
+            width: 100px;
+        }
+
+        .text-footer{
+            margin-top: 1%;
+        }
+
+        .footer-2{
+            background-color: #24252a;
+        }
+
+        .text-footer{
+            color: white;
+        }
+
+        .footer-2 .img-footer img{
+            margin-left: 100px;
             width: 100px;
         }
 
@@ -42,6 +46,10 @@
             h4{
                 font-size: 18px;
             }
+
+            .footer-2 .img-footer img{
+                margin-left: 50px;
+            }
         }
 
         @media (max-width: 800px) {
@@ -54,8 +62,12 @@
                 margin-top:100px;
                 margin-bottom: 30px;
             }
-            p{
-                font-size: 12px;
+            .card-body p{
+                font-size: 14px;
+            }
+
+            .footer-2 .img-footer img{
+                margin-left: 0;
             }
         }
     </style>
@@ -68,7 +80,7 @@
                 <h1 class="title">Kelas</h1>
                 <div class="row py-4">
                     <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
+                        <div class="card mb-3">
                             <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="card-title">
@@ -84,7 +96,7 @@
 
                 
                     <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
+                        <div class="card mb-3">
                             <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="card-title">
@@ -99,7 +111,7 @@
                     </div>
                 
                     <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
+                        <div class="card mb-3">
                             <img src="user/image/kopi.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="card-title">
@@ -114,7 +126,7 @@
                     </div>
 
                     <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
+                        <div class="card mb-3">
                             <img src="user/image/minder.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="card-title">
@@ -133,8 +145,6 @@
     </div>
 @endsection
 
-@section('footer')
-    <div class="copyright">
-        <p>copyright &copy; 2020 - Kejar Bahasa</p>
-    </div>
+@section('image-footer')        
+    <img src="../user/image/logo3.png" class="img-fluid" alt=""/>
 @endsection
