@@ -61,7 +61,7 @@
 @section('content')
     <div class="class-section">
         <div class="container">
-            <div class="card mx-4">
+            <div class="card mx-4 shadow">
                 <div class="card-header bg-white" style="height: 50px;"></div>
                 <div class="row no-gutters">
                     <div class="col-md-4">

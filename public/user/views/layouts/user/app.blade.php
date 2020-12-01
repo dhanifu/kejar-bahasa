@@ -10,6 +10,7 @@
     <script src="../user/js/bootstrap.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f38b57ad54.js" crossorigin="anonymous"></script>
         <style>
             *{
                 margin: 0;
@@ -77,7 +78,6 @@
             }
 
             .sticky{
-                box-shadow: 0 1.5px rgb(187, 186, 186);
                 animation: fadeIn .7s;
             }
 
@@ -156,10 +156,10 @@
     <script>
         $(window).scroll(function() {
             if ($(this).scrollTop() > 1){  
-                $('nav').addClass("sticky");
+                $('nav').addClass("sticky" + " shadow-sm");
             }
             else {
-                $('nav').removeClass("sticky");
+                $('nav').removeClass("sticky" + " shadow-sm");
             }
         });
     </script>

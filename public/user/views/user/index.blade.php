@@ -152,7 +152,7 @@
             <h1>Kelas Terbaru</h1>
             <div class="row mt-4">
                 <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow">
                         <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="card-title">
@@ -167,7 +167,7 @@
                 </div>
             
                 <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow">
                         <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="card-title">
@@ -182,7 +182,7 @@
                 </div>
             
                 <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow">
                         <img src="user/image/kopi.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="card-title">
@@ -197,7 +197,7 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow">
                         <img src="user/image/minder.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="card-title">

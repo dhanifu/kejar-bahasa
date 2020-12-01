@@ -72,7 +72,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="card mt-4">
+                    <div class="card mt-4 shadow">
                         <div class="card-header">
                             Judul modul
                         </div>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="card mt-4">
+                    <div class="card mt-4 shadow">
                         <div class="card-body px-4">
                             <h2 class="card-title">Judul</h2>
                             <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. At explicabo cumque sit, facilis dolor non similique quia impedit tenetur eveniet ab sapiente maiores, dolorem nulla! Excepturi voluptate consequuntur impedit quos?</p>
