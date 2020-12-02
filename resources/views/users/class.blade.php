@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.app')
 @section('title','Kelas')
     
 @section('style')
@@ -95,7 +95,7 @@
 @section('content')
     <div class="container">
         <div class="class-section">
-            <div class="card header mt-4 bg-info">
+            <div class="card header mt-4 shadow" style="background-image: linear-gradient(150deg, #085f94, #20e6f1)">
                 <div class="card-body">
                     <h1 class="text-white">Kelas</h1>
                     <h4 class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum voluptates, ratione similique eum deserunt quae reprehenderit aut in consequatur culpa tenetur voluptatum animi labore. Blanditiis pariatur alias libero. Dolores, vitae?</h4>
@@ -188,66 +188,23 @@
                 
                 <div class="col-md-9">
                     <div class="row mt-4">
+
+                        @foreach($classes as $kelas)
                         <div class="col-md-4 col-sm-6 mb-3">
                             <div class="card mb-3 shadow">
-                                <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
+                                <img src="{{ asset('images/class/'.$kelas->picture) }}" class="card-img-top" alt="{{ $kelas->name }}">
                                 <div class="card-body">
                                     <div class="card-title">
-                                        <h4>Judul</h4>
+                                        <h4>{{ $kelas->name }}</h4>
                                     </div>
-                                    <p>Deskripsi</p>
+                                    <p>{{ substr($kelas->description, 0, 45) }} ...</p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <a href="/kelas/preview" class="btn btn-primary">Lihat</a>
+                                    <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary">Lihat</a>
                                 </div>
                             </div>
                         </div>
-        
-                    
-                        <div class="col-md-4 col-sm-6 mb-3">
-                            <div class="card mb-3 shadow">
-                                <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4>Judul</h4>
-                                    </div>
-                                    <p>Deskripsi</p>
-                                </div>
-                                <div class="card-footer text-right">
-                                    <a href="#" class="btn btn-primary">Lihat</a>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-md-4 col-sm-6 mb-3">
-                            <div class="card mb-3 shadow">
-                                <img src="user/image/kopi.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4>Judul</h4>
-                                    </div>
-                                    <p>Deskripsi</p>
-                                </div>
-                                <div class="card-footer text-right">
-                                    <a href="#" class="btn btn-primary">Lihat</a>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-4 col-sm-6 mb-3">
-                            <div class="card mb-3 shadow">
-                                <img src="user/image/minder.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4>Judul</h4>
-                                    </div>
-                                    <p>Deskripsi</p>
-                                </div>
-                                <div class="card-footer text-right">
-                                    <a href="#" class="btn btn-primary">Lihat</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>    
@@ -256,5 +213,5 @@
 @endsection
 
 @section('image-footer')        
-    <img src="../user/image/logo3.png" class="img-fluid" alt=""/>
+    <img src="{{ asset('user/image/logo3.png') }}" class="img-fluid" alt=""/>
 @endsection

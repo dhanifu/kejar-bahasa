@@ -13,20 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-// Ini buat landing page aja
-Route::get('/home', 'HomeController@index')->name('home');
-// dan seterusnya
 
+Route::name('user.')->group(function(){
+    Route::get('/', 'PagesController@welcome')->name('welcome');
+    Route::get('/about-us', 'PagesController@about')->name('about');
+    Route::get('/contact', 'PagesController@contact')->name('contact');
 
-// user logged in
-Route::name('user.')->middleware('role:user')->group(function(){
-    // 
+    Route::get('/dashboard', 'HomeController@index')->middleware('role:user')->name('home');
+    
+    Route::prefix('class')->name('class.')->group(function(){
+        Route::get('/', 'ClassController@index')->name('index');
+        Route::get('/{code}', 'ClassController@class')->name('class');
+    });
 });
 
 

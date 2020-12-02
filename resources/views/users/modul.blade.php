@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.app')
 @section('title', 'Modul')
 
 @section('style')
@@ -106,5 +106,5 @@
 @endsection
 
 @section('image-footer')        
-    <img src="../user/image/logo3.png" class="img-fluid" alt=""/>
+    <img src="{{ asset('user/image/logo3.png') }}" class="img-fluid" alt=""/>
 @endsection
