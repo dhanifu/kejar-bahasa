@@ -1,10 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Edit About')
 
-@section('css')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-@endsection
-
 @section('page-title', 'Edit About Us')
 
 @section('breadcrumb')
