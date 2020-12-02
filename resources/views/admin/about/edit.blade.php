@@ -9,7 +9,7 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('admin.about.index')}}">Ebout</a></li>
-    <li class="breadcrumb-item text-muted active">Edit ABout</li>
+    <li class="breadcrumb-item text-muted active">Edit About</li>
 @endsection
 
 @section('button')
@@ -36,8 +36,15 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
+                        <img id="imagePreview" src="{{asset('images/about/'.$about->banner)}}"
+                                style="object-fit: cover; max-height: 300px; margin-bottom: 10px;">
+                        <input type="file" name="banner" id="banner" class="form-control-file @error('banner') is-invalid @enderror">
+                        <small class="form-text text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
+                        <p class="text-danger">{{ $errors->first('banner') }}</p>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -49,7 +56,6 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="about">About</label>
                                     <p class="text-danger">{{$errors->first('about')}}</p>
                                     <textarea name="about" id="about" class="form-control @error('about') is-invalid @enderror" 
                                             placeholder="about...">{{$about->about}}</textarea>
