@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::get('/', 'PagesController@welcome')->name('welcome');
-Route::get('/about', 'PagesController@about')->name('about');
-Route::get('/contact', 'PagesController@contact')->name('contact');
-
-
-
 Route::name('user.')->group(function(){
+    Route::get('/', 'PagesController@welcome')->name('welcome');
+    Route::get('/about-us', 'PagesController@about')->name('about');
+    Route::get('/contact', 'PagesController@contact')->name('contact');
+
+    Route::get('/dashboard', 'HomeController@index')->middleware('role:user')->name('home');
+    
     Route::prefix('class')->name('class.')->group(function(){
         Route::get('/', 'ClassController@index')->name('index');
         Route::get('/{code}', 'ClassController@class')->name('class');
