@@ -54,49 +54,14 @@
             letter-spacing: 2px;
         }
 
-        .footer h2{
-            font-weight: 400;
-        }
-
-        .center { 
-            text-align: center; 
-        }
-
-        .center a{
-            font-size: 20px;
-        }
-
-        .footer-2 {
-            margin: auto;
-            width: 100%;
-            padding: 50px;
+        .footer h1{
+            font-weight: 600;
         }
 
         .footer-2 .img-footer img{
             margin-left: 50px;
             width: 250px;
             height: 68px;
-        }
-
-        .copyright{
-            width: 100%;
-            padding: 2px;
-            background-color:#f4f4f2;
-            border: .5px solid rgb(187, 186, 186);
-        }
-
-        .copyright p{
-            margin: auto;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .footer h1{
-            font-weight: 600;
-        }
-
-        .text-footer{
-            margin-top: -2%;
         }
 
         @media(max-width:1024px){
@@ -111,6 +76,18 @@
             h4{
                 font-size: 18px;
             }
+
+            .card-footer small{
+                font-size: 11px;
+            }
+
+            .card-body p{
+                font-size: 13px;
+            }
+
+            .content p{
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 800px) {
@@ -122,8 +99,8 @@
                 transform: translateY(0);
             }
 
-            p, a{
-                font-size: 12px;
+            .content p{
+                font-size: 15px;
             }
 
             .img-footer{
@@ -136,6 +113,10 @@
 
             .text-footer{
                 margin-top: 2%;
+            }
+
+            .center a{
+                font-size: 15px;
             }
         }
  
@@ -168,63 +149,71 @@
 
     <div class="container">
         <div class="class-section">
-            <div class="container">
-                <h1>Kelas Terbaru</h1>
-                <div class="row mt-4">
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
-                            <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h4>Judul</h4>
-                                </div>
-                                <p>Deskripsi</p>
+            <h1>Kelas Terbaru</h1>
+            <div class="row mt-4">
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card mb-3 shadow">
+                        <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>Judul</h4>
                             </div>
+                            <p>Deskripsi</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
                         </div>
                     </div>
-                
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
-                            <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h4>Judul</h4>
-                                </div>
-                                <p>Deskripsi</p>
+                </div>
+            
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card mb-3 shadow">
+                        <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>Judul</h4>
                             </div>
+                            <p>Deskripsi</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
                         </div>
                     </div>
-                
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
-                            <img src="user/image/kopi.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h4>Judul</h4>
-                                </div>
-                                <p>Deskripsi</p>
+                </div>
+            
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card mb-3 shadow">
+                        <img src="user/image/kopi.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>Judul</h4>
                             </div>
+                            <p>Deskripsi</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="card">
-                            <img src="user/image/minder.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h4>Judul</h4>
-                                </div>
-                                <p>Deskripsi</p>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card mb-3 shadow">
+                        <img src="user/image/minder.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>Judul</h4>
                             </div>
+                            <p>Deskripsi</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
                         </div>
                     </div>
                 </div>
             </div>      
         </div>
     </div>
-@endsection
 
-@section('footer')
     <div class="footer">
         <h1>Belajar Yuk!</h1>
         <h3 class="mt-4">dunia menunggu Anda untuk</h3>
@@ -233,20 +222,8 @@
             <a href="#" class="btn btn-primary">Daftar Sekarang</a>
         </div>
     </div>
+@endsection
 
-    <div class="footer-2">
-        <div class="row d-flex justify-content-between">
-            <div class="col-md-6 img-footer">
-                <img src="user/image/logo1.png" class="img-fluid" alt=""/>
-            </div>
-            <div class="content text-footer col-md-6">
-                <h3>Hubungi Kami</h3>
-                <p class="center">@kejarbahasa.com</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright">
-        <p>copyright &copy; 2020 - Kejar Bahasa</p>
-    </div>
+@section('image-footer')        
+    <img src="../user/image/logo1.png" class="img-fluid" alt=""/>
 @endsection
