@@ -67,4 +67,10 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::put('/{user}/update', 'Admin\ProfileController@update')->name('update');
         Route::patch('/change-password', 'Admin\ProfileController@changePassword')->name('changePassword');
     });
+
+    Route::prefix('about')->name('about.')->group(function(){
+        Route::get('/', 'Admin\AboutController@index')->name('index');
+        Route::put('/{user}/update', 'Admin\AboutController@update')->name('update');
+        
+    });
 });
