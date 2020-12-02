@@ -10,14 +10,25 @@
     <script src="../user/js/bootstrap.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f38b57ad54.js" crossorigin="anonymous"></script>
         <style>
             *{
                 margin: 0;
                 padding: 0;
                 font-family: 'Source Sans Pro', sans-serif;
             }
+
+            ::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: rgb(84, 78, 78);
+                border-radius: 10px;
+            }
+
             .navbar{
-                background-color: white;
+                background-color: #ffff;
             }
 
             h1,h2{
@@ -28,8 +39,74 @@
             .btn{
                 border:none;
             }
+            
+            .text-footer{
+                text-align: center;
+                margin-top: -2%;
+            }
+
+            .footer h2{
+                font-weight: 400;
+            }
+
+            .center { 
+                text-align: center; 
+            }
+
+            .center a{
+                font-size: 20px;
+            }
+
+            .footer-2 {
+                margin: auto;
+                width: 100%;
+                padding: 50px;
+                border: 1px solid lightgray;
+            }
+
+            .copyright{
+                width: 100%;
+                padding: 2px;
+                background-color:#f4f4f2;
+                border: .5px solid rgb(187, 186, 186);
+            }
+
+            .copyright p{
+                margin: auto;
+                padding: 15px;
+                text-align: center;
+            }
+
+            .sticky{
+                animation: fadeIn .7s;
+            }
+
+            @media (max-width: 800px) {
+                .img-footer{
+                    text-align: center;
+                }
+
+                .footer-2 .img-footer img{
+                    margin-left: 0;
+                }
+
+                .text-footer{
+                    margin-top: 2%;
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: .5;
+                    transform: translateY(-10%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         </style>
-        <link rel="icon" href="user/image/logo2.png">
+        <link rel="icon" href="../user/image/logo2.png">
     @yield('style')
 </head>
 <body>
@@ -57,7 +134,34 @@
             </ul>
         </div>
     </nav>
+
     @yield('content')
-    @yield('footer')
+
+    <div class="footer-2">
+        <div class="row">
+            <div class="col-md-6 img-footer">
+                @yield('image-footer')
+            </div>
+            <div class="content text-footer col-md-6">
+                <h3>Hubungi Kami</h3>
+                <p class="center">@kejarbahasa.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>copyright &copy; 2020 - Kejar Bahasa</p>
+    </div>
+
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 1){  
+                $('nav').addClass("sticky" + " shadow-sm");
+            }
+            else {
+                $('nav').removeClass("sticky" + " shadow-sm");
+            }
+        });
+    </script>
 </body>
 </html>
