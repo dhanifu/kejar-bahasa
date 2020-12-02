@@ -149,21 +149,6 @@
     const inputGambar = document.getElementById('image');
     const tampilGambar = document.getElementById('image_preview');
 
-    const currentPass = document.getElementById('currentpass');
-    const password = document.getElementById('password');
-    const password2 = document.getElementById('password2');
-
-    function showError(input, message) {
-        const formControl = input.parentElement;
-        formControl.className = 'form-control error';
-        const small = formControl.querySelector('small');
-        small.innerText = message;
-    }
-
-    function showSuccess(input) {
-        const formControl = input.parentElement;
-        formControl.className = 'form-control success';
-    }
 
     function menerapkanGambar(){
         
@@ -174,24 +159,6 @@
         reader.readAsDataURL(this.files[0]);
     }
 
-    function mengecekPassword(passwordDB, inputPassword ){
-        if (passwordDB.value !== inputPassword.value) {
-            showError(inputPassword, 'Passwords do not match');
-        }
-    }
-
-    function mengecekPasswordBaru(input1, input2){
-        if (input1.value !== input2.value) {
-            showError(input2, 'Passwords do not match');
-        }
-    }
-
     inputGambar.addEventListener('change', menerapkanGambar);
-    currentPass.addEventListener('change', mengecekPassword({{Auth::user()->passoword}}, currentpass));
-   
-
-        
-        // mengecekPasswordBaru(password, password2);
-
 </script>
 @endsection
