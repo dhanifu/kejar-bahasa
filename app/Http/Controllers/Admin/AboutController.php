@@ -15,18 +15,17 @@ class AboutController extends Controller
         return view('admin.about.index', compact('abouts'));
     }
 
-    public function show($id)
+    public function edit(About $about)
+    {
+        return view('admin.about.edit', compact('about'));
+    }
+
+    public function update(Request $request, About $about)
     {
         //
     }
-
-    public function edit($id)
-    {
-        //
-    }
-
     
-    public function update(Request $request, $id)
+    public function show(About $about)
     {
         //
     }

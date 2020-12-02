@@ -70,8 +70,8 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
 
     Route::prefix('about')->name('about.')->group(function(){
         Route::get('/', 'Admin\AboutController@index')->name('index');
-        Route::get('/{about}/preview', 'Admin\ModuleController@show')->name('show');
-        Route::get('/{about}/edit', 'Admin\ModuleController@edit')->name('edit');
+        Route::get('/{about}/preview', 'Admin\AboutController@show')->name('show');
+        Route::get('/{about}/edit', 'Admin\AboutController@edit')->name('edit');
         Route::put('/{about}/update', 'Admin\AboutController@update')->name('update');
         
     });
