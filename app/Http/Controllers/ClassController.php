@@ -67,14 +67,22 @@ class ClassController extends Controller
             $bab = Module::where('class_id', $c->id)->orderBy('created_at', 'ASC')->get();
             $classes = Classs::where('code', $class)->with('module')->get();
             $modul = Module::where('code', $module)->first();
-            
-            if (empty($modul)){
-                return redirect()->back();
+
+            $purchased = Classs::join('purchaseds','classses.id','=','purchaseds.class_id')
+                                ->where('purchaseds.user_id', Auth::user()->id)
+                                ->get();
+
+            if (count($purchased) != 0) {
+                if (empty($modul)){
+                    return redirect()->back();
+                }
+                return view('users.modul', compact(
+                    'class', 'module',
+                    'bab', 'classes', 'modul'
+                ));
+            } else {
+                return redirect()->route('user.class.class', $class);
             }
-            return view('users.modul', compact(
-                'class', 'module',
-                'bab', 'classes', 'modul'
-            ));
         } else {
             return redirect()->route('login');
         }
