@@ -51,6 +51,33 @@
                         </span>
                     </a>
                 </li>
+
+                <li class="list-divider"></li>
+                <li class="nav-small-cap">
+                    <span class="hide-menu">Profile</span>
+                </li>
+
+                {{-- About --}}
+                <li class="sidebar-item @if(request()->routeIs('admin.about.*')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('admin.about.*')) active @endif" href="{{route('admin.about.index')}}"
+                        aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span
+                            class="hide-menu">About
+                        </span>
+                    </a>
+                </li>
+
+                {{-- Contact --}}
+                <li class="sidebar-item ">
+                    <a class="sidebar-link" href="#"
+                        aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span
+                            class="hide-menu">Contact
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
