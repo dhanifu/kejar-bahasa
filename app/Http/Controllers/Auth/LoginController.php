@@ -37,16 +37,23 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->redirectTo = url()->previous();
+    }
+
+    public function showLoginForm()
+    {
+        if(!session()->has('url.intended'))
+        {
+            session(['url.intended' => url()->previous()]);
+        }
+        return view('auth.login');
     }
 
     public function authenticated(Request $request, $user)
     {
-       
         if ($user->hasRole('admin')) {
             return redirect()->route('admin.home');
         }
-        return redirect()->route('user.home');
-
        
     }
 }
