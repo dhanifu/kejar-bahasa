@@ -14,4 +14,8 @@ class Purchased extends Model
     public function class(){
         return $this->belongsTo('App\Classs', 'class_id');
     }
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }

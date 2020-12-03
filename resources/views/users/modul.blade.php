@@ -77,26 +77,24 @@
                             Judul modul
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="">Bab 1</a></li>
-                            <li class="list-group-item"><a href="">Bab 2</a></li>
-                            <li class="list-group-item"><a href="">Bab 3</a></li>
-                            <li class="list-group-item"><a href="">Bab 4</a></li>
-                            <li class="list-group-item"><a href="">Bab 5</a></li>
-                            <li class="list-group-item"><a href="">Bab 6</a></li>
-                            <li class="list-group-item"><a href="">Bab 7</a></li>
-                            <li class="list-group-item"><a href="">Bab 8</a></li>
+                            @foreach($bab as $m)
+                                <li class="list-group-item {{ $module == $m->code ? 'active':'' }}"
+                                    onclick="document.location.href='{{ route('user.class.module', [$class, $m->code]) }}'"
+                                    style="cursor: pointer">
+                                    {{ $m->title }}
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="card mt-4 shadow">
                         <div class="card-body px-4">
-                            <h2 class="card-title">Judul</h2>
-                            <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. At explicabo cumque sit, facilis dolor non similique quia impedit tenetur eveniet ab sapiente maiores, dolorem nulla! Excepturi voluptate consequuntur impedit quos?</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia sint, vel nobis recusandae placeat nulla similique vitae ad voluptas porro, modi obcaecati illo commodi cumque. Consequuntur deleniti nesciunt eum illo!</p>
+                            <h2 class="card-title">{{ $modul->title }}</h2>
+                            {!! $modul->content !!}
                         </div>
                         <div class="card-footer text-right bg-white">
-                            <a href="#" class="btn btn-success">Selanjutnya</a>
+                            <button onclick="" class="btn btn-success">Selanjutnya</button>
                         </div>
                     </div>
                 </div>

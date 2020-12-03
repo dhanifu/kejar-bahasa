@@ -96,13 +96,60 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-    
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Beli</button>
-                </div>
+                <form action="{{ route('user.class.beli', $class->id) }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="alert alert-success fade show wow slideInDown" role="alert">
+                            Ini kelas gratis, langsung klik <span class="btn btn-sm text-white bg-primary" style="cursor: default">Beli</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Class Code</label>
+                            <input type="text" name="invoice" class="form-control"
+                                value="{{ $class->code }}" disabled>
+                        </div>
+                        @if($class->price != 0)
+                        <div class="form-group">
+                            <label for="transfer_to">Transfer Ke</label>
+                            <select name="transfer_to" class="form-control" required>
+                                <option value="">Pilih</option>
+                                <option value="BCA - 1234567" {{old('transfer_to')=='BCA - 1234567'?'selected':''}}>
+                                    BCA: 1234567 a.n Kejar Bahasa
+                                </option>
+                                <option value="Mandiri - 2345678" {{old('transfer_to')=='Mandiri - 2345678'?'selected':''}}>
+                                    Mandiri: 2345678 a.n Kejar Bahasa
+                                </option>
+                                <option value="BRI - 9876543" {{old('transfer_to')=='BRI - 9876543'?'selected':''}}>
+                                    BRI: 9876543 a.n Kejar Bahasa
+                                </option>
+                                <option value="BNI - 6789456" {{old('transfer_to')=='BNI - 6789456'?'selected':''}}>
+                                    BNI: 6789456 a.n Kejar Bahasa
+                                </option>
+                            </select>
+                            <p class="text-danger">{{ $errors->first('transfer_to') }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Jumlah Transfer</label>
+                            <input type="number" name="amount" class="form-control" value="{{ old('amount') }}" required>
+                            <p class="text-danger">{{ $errors->first('amount') }}</p>
+                        </div>
+                        @else
+                        <div class="form-group">
+                            <label>Transfer Ke</label>
+                            <select class="form-control" disabled>
+                                <option value="">Pilih</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Transfer</label>
+                            <input type="number" class="form-control" value="0" disabled>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Beli</button>
+                    </div>
+                </form>
             </div>
             </div>
         </div>
