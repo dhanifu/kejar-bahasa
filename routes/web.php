@@ -77,4 +77,9 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::put('/{about}/update', 'Admin\AboutController@update')->name('update');
         
     });
+
+    Route::prefix('reports')->name('report.')->group(function(){
+        Route::get('/', 'Admin\ReportController@index')->name('index');
+        Route::get('/pdf/{daterange}', 'Admin\ReportController@reportPdf')->name('pdf');
+    });
 });
