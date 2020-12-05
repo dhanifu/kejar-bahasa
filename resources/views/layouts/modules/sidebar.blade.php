@@ -78,6 +78,21 @@
                         </span>
                     </a>
                 </li>
+
+                <li class="list-divider"></li>
+                <li class="nav-small-cap">
+                    <span class="hide-menu">Report</span>
+                </li>
+
+                <li class="sidebar-item @if(request()->routeIs('admin.report.*')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('admin.report.*')) active @endif" href="{{route('admin.report.index')}}"
+                        aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span
+                            class="hide-menu">Transaction Report
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
