@@ -25,6 +25,7 @@ Route::name('user.')->group(function(){
     
     Route::prefix('class')->name('class.')->group(function(){
         Route::get('/', 'ClassController@index')->name('index');
+        Route::get('/search/class', 'ClassController@searchClass')->name('ajax.searchClass');
         Route::get('/{code}', 'ClassController@class')->name('class');
         Route::post('/{class}/buy', 'ClassController@beli')->middleware('role:user')->name('beli');
         Route::get('/{class}/{module}/', 'ClassController@module')->name('module');
