@@ -53,6 +53,19 @@
             font-weight: 700;
         }
 
+        #x-btn {
+            font-size: 12px;
+            color: darkblue;
+        }
+
+        #x-btn:focus{
+            outline: 0;
+            box-shadow: 0 0 0 0;
+        }
+        #x-btn:hover{
+            cursor: pointer;
+        }
+
         @media(max-width:1024px){
             h1{
                 font-size: 25px;
@@ -90,128 +103,163 @@
             }
         }
     </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 @endsection
 
 @section('content')
     <div class="container">
         <div class="class-section">
-            <div class="card header mt-4 shadow" style="background-image: linear-gradient(150deg, #085f94, #20e6f1)">
-                <div class="card-body">
-                    <h1 class="text-white">Kelas</h1>
-                    <h4 class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum voluptates, ratione similique eum deserunt quae reprehenderit aut in consequatur culpa tenetur voluptatum animi labore. Blanditiis pariatur alias libero. Dolores, vitae?</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div id="accordion">
-                        <div class="card mt-4 shadow p-3">
-                            <div class="card-body">
-                                <h4 class="mb-3">Filter</h4>
-                                <div class="form-group">
-                                    <input type="text" placeholder="&#xF002;&nbsp;&nbsp;Search" style="font-family:FontAwesome,'Source Sans Pro', sans-serif;" class="form-control"/>
-                                </div>
-                                <div id="headingOne">
-                                    <div class="d-flex justify-content-between" style="cursor: pointer" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <p>Tipe Kelas</p>   
-                                        <i class="fas fa-angle-down"></i>   
-                                    </div>
-                                </div>
-                                <div id="collapseOne" class="collapse my-auto" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Gratis</label>
-                                    </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                        <label class="form-check-label" for="exampleCheck2">Berbayar</label>
-                                    </div>
-                                </div>
 
-                                <div id="headingTwo">
-                                    <div class="d-flex justify-content-between" style="cursor: pointer" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                        <p>Harga</p>    
-                                        <i class="fas fa-angle-down"></i> 
-                                    </div>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                                        <label class="form-check-label" for="exampleCheck3">Termurah</label>
-                                    </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck4">
-                                        <label class="form-check-label" for="exampleCheck4">Termahal</label>
-                                    </div>
-                                </div>
-
-                                <div id="headingThree">
-                                    <div class="d-flex justify-content-between" style="cursor: pointer" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                        <p>Upload</p>   
-                                        <i class="fas fa-angle-down"></i>
-                                    </div>
-                                </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck5">
-                                        <label class="form-check-label" for="exampleCheck5">Terbaru</label>
-                                    </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck6">
-                                        <label class="form-check-label" for="exampleCheck6">Terlama</label>
-                                    </div>
-                                </div>
-
-                                <div id="headingFour">
-                                    <div class="d-flex justify-content-between" style="cursor: pointer" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                        <p>Kategori</p> 
-                                        <i class="fas fa-angle-down"></i>
-                                    </div>
-                                </div>
-                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck7">
-                                        <label class="form-check-label" for="exampleCheck7">Android</label>
-                                    </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck8">
-                                        <label class="form-check-label" for="exampleCheck8">IOS</label>
-                                    </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck9">
-                                        <label class="form-check-label" for="exampleCheck9">Web</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="card header shadow" style="background-image: linear-gradient(150deg, #085f94, #20e6f1)">
+                    <div class="card-body">
+                        <h1 class="text-white">Kelas</h1>
+                        <h4 class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum voluptates, ratione similique eum deserunt quae reprehenderit aut in consequatur culpa tenetur voluptatum animi labore.</h4>
                     </div>
                 </div>
-                
-                <div class="col-md-9">
+
+                <form action="{{ route('user.class.index') }}" method="GET" id="filterForm">
                     <div class="row mt-4">
-
-                        @foreach($classes as $kelas)
-                        <div class="col-md-4 col-sm-6 mb-3">
-                            <div class="card mb-3 shadow">
-                                <img src="{{ asset('images/class/'.$kelas->picture) }}" class="card-img-top" alt="{{ $kelas->name }}">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4>{{ $kelas->name }}</h4>
+                        <div class="col-md-3">
+                            <div id="accordion">
+                                <div class="card shadow p-4">
+                                    <h4 style="margin-bottom: -3px">Filter</h4>
+                                    <hr>
+                                    <div id="headingOne">
+                                        <div class="d-flex justify-content-between" style="cursor: pointer" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <p>Tipe Kelas</p>   
+                                            <i class="fas fa-angle-down"></i>   
+                                        </div>
                                     </div>
-                                    <p>{{ substr($kelas->description, 0, 45) }} ...</p>
-                                </div>
-                                <div class="card-footer text-right">
-                                    <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary">Lihat</a>
+                                    <div id="collapseOne" class="collapse my-auto show" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="gratis" name="type" 
+                                                    value="free" onclick="filterResults()" {{ request()->type=="free"?'checked':'' }}>
+                                            <label class="custom-control-label" for="gratis">Gratis</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="bayar" name="type" 
+                                                    value="paid" onclick="filterResults()" {{ request()->type=="paid"?'checked':'' }}>
+                                            <label class="custom-control-label" for="bayar">Berbayar</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div id="headingTwo">
+                                        <div class="d-flex justify-content-between" style="cursor: pointer" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                            <p>Kategori</p>
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        @foreach($categories as $categ)
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="category" id="{{$categ->id}}"
+                                                        value="{{ $categ->id }}" onclick="filterResults()"
+                                                        @if (in_array($categ->id, explode(',', request()->input('filter.category'))))
+                                                            checked
+                                                        @endif>
+                                                <label class="custom-control-label" for="{{$categ->id}}">{{ $categ->name }}</label>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        <hr>
+                                        <button class="btn btn-dark col-12" id="clear">Clear</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" name="keyword" id="keyword" class="form-control" list="classSearchList" autocomplete="off"
+                                                placeholder="&nbsp;&#xF002;&nbsp;&nbsp;Search" style="font-family:FontAwesome,'Source Sans Pro', sans-serif;"
+                                                value="{{ request()->keyword }}">
+                                            <button type="button" class="btn bg-transparent" id="x-btn" style="margin-left: -40px; z-index: 100;">
+                                                <i class="ti-close"></i>
+                                            </button>
+                                        </div>
+                                        <div id="classSearchList" class="shadow d-none" style="position: absolute; margin-top: 1px; width: 300px; background: #ffffff; !important; z-index: 10;">
+                                            <div class="list-group list-group-flush" id="list-tab" role="tablist"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select name="sort" id="sort" class="selectpicker form-control"
+                                                data-style="border border-secondary" title="Sort">
+                                            <option value="oldest"
+                                                {{ request()->sort=="oldest"?'selected':'' }}>
+                                                Terlama
+                                            </option>
+                                            <option value="newest"
+                                                {{ request()->sort=="newest"?'selected':'' }}>
+                                                Terbaru
+                                            </option>
+                                            <option value="highest_price"
+                                                {{ request()->sort=="highest_price"?'selected':'' }}>
+                                                Harga tertinggi
+                                            </option>
+                                            <option value="lowest_price"
+                                                {{ request()->sort=="lowest_price"?'selected':'' }}>
+                                                Harga terendah
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="margin-top: 5px">
+                            <div class="row">
+                
+                                @forelse($classes as $kelas)
+                                <div class="col-md-4 col-sm-6 mb-4">
+                                    <div class="card mb-3 shadow">
+                                        <img src="{{ asset('images/class/'.$kelas->picture) }}" class="card-img-top" alt="{{ $kelas->name }}">
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h4>{{ $kelas->name }}</h4>
+                                            </div>
+                                            <p>{{ substr($kelas->description, 0, 45) }} ...</p>
+                                        </div>
+                                        <div class="card-footer text-right">
+                                            <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary">Lihat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                <div class="col-md-12">
+                                    <h3>Kelas tidak ditemukan, mohon coba kata kunci lain atau yang lebih umum</h3>
+                                </div>
+                                @endforelse
+
+                                {{  $classes->links() }}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>    
+                </form>
+
         </div>
     </div>
 @endsection
 
 @section('image-footer')        
     <img src="{{ asset('user/image/logo3.png') }}" class="img-fluid" alt=""/>
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script src="{{ asset('js/filter.js') }}"></script>
+<script>
+    $('#sort').on('change',function(){
+        filterResults();
+    });
+</script>
 @endsection
