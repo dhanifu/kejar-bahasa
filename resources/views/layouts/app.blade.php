@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('user/css/bootstrap.min.css') }}">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/icons/themify-icons/themify-icons.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f38b57ad54.js" crossorigin="anonymous"></script>
@@ -167,7 +166,7 @@
 
     @yield('content')
 
-    <div class="footer-2">
+    <div class="footer-2 mt-4">
         <div class="row">
             <div class="col-md-6 img-footer">
                 @yield('image-footer')
@@ -183,6 +182,8 @@
         <p>copyright &copy; 2020 - Kejar Bahasa</p>
     </div>
 
+    <script src="{{asset('admin/assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>
     <script>
         $(window).scroll(function() {
             if ($(this).scrollTop() > 1){  
