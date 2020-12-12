@@ -41,7 +41,7 @@
         }
 
         .header{
-            /* ubah sendiri kalo aneh bg-colornya */
+            background: linear-gradient(150deg, #085f94, #20e6f1);
             border:none;
         }
 
@@ -101,6 +101,10 @@
             .footer-2 .img-footer img{
                 margin-left: 0;
             }
+
+            #a {
+                margin-top: 17px;
+            }
         }
     </style>
 
@@ -111,7 +115,7 @@
     <div class="container">
         <div class="class-section">
 
-                <div class="card header shadow" style="background-image: linear-gradient(150deg, #085f94, #20e6f1)">
+                <div class="card header shadow">
                     <div class="card-body">
                         <h1 class="text-white">Kelas</h1>
                         <h4 class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum voluptates, ratione similique eum deserunt quae reprehenderit aut in consequatur culpa tenetur voluptatum animi labore.</h4>
@@ -122,7 +126,7 @@
                     <div class="row mt-4">
                         <div class="col-md-3">
                             <div id="accordion">
-                                <div class="card shadow p-4">
+                                <div class="card p-4">
                                     <h4 style="margin-bottom: -3px">Filter</h4>
                                     <hr>
                                     <div id="headingOne">
@@ -167,15 +171,15 @@
                                             </div>
                                         </div>
                                         @endforeach
-                                        <hr>
-                                        <button class="btn btn-dark col-12" id="clear">Clear</button>
                                     </div>
+                                    <hr>
+                                    <button type="button" class="btn btn-dark col-12" id="clear">Clear</button>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-md-9">
-                            <div class="row">
+                            <div class="row" id="a">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -257,9 +261,4 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <script src="{{ asset('js/filter.js') }}"></script>
-<script>
-    $('#sort').on('change',function(){
-        filterResults();
-    });
-</script>
 @endsection

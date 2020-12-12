@@ -92,6 +92,11 @@
                 .text-footer{
                     margin-top: 2%;
                 }
+                
+                .navbar {
+                    background: transparent;
+                    backdrop-filter: blur(40px);
+                }
             }
 
             @keyframes fadeIn {
@@ -136,7 +141,7 @@
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link btn" style="color: #fff; font-weight: bold; background-color: #1c2d41;" href="{{ route('register') }}">Register</a>
+                            <a class="nav-link btn mb-2" style="color: #fff; font-weight: bold; background-color: #1c2d41;" href="{{ route('register') }}">Register</a>
                         </li>
                     @endif
                 @else
