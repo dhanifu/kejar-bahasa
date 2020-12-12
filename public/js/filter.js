@@ -1,4 +1,13 @@
 // kejarbahasa_team
+
+const sort = document.getElementById("sort");
+const clear = document.getElementById("clear");
+
+sort.addEventListener('change', filterResults);
+clear.addEventListener("click", function(){
+    document.location.href="/class";
+});
+
 $(document).ready(function(){
     if ($('#keyword').val()=="") {
         $('#x-btn').hide();
@@ -65,7 +74,7 @@ $(document).ready(function(){
                         if (price == 0) {
                             price = 'Free';
                         } else {
-                            price = split[1] != undefined ? price+','+split[1]: price;
+                            price = split[1] != undefined ? 'Rp '+price+','+split[1]: 'Rp '+price;
                         }
 
                         $('#list-tab').append(`
@@ -77,7 +86,7 @@ $(document).ready(function(){
                                     </div>
                                     <div class="col-md-8">
                                         ${title} <br>
-                                        Rp ${price}
+                                        ${price}
                                     </div>
                                 </div>
                             </a>
@@ -134,24 +143,43 @@ function filterResults(){
     if (type != '') {
         href += `type=${type}`;
     }
-    if (categoryIds.length) {
+    if (categoryIds != '') {
         if (type == '') {
-            href += `type=${type}&filter[category]=${categoryIds}`;
+            href += `filter[category]=${categoryIds}`;
+        }else{
+            href += `&filter[category]=${categoryIds}`;
         }
-        href += `&filter[category]=${categoryIds}`;
     }
 
     if (keyword != '') {
-        href += `&keyword=${keyword}`;
-    }else{
-        href += `&keyword=`;
+        if (categoryIds == '') {
+            if (type != '') {
+                href += `&keyword=${keyword}`;
+            }else{
+                href += `keyword=${keyword}`;
+            }
+        } else {
+            href += `&keyword=${keyword}`;
+        }
     }
 
     if (sort != '') {
-        href += `&sort=${sort}`;
-    }else{
-        href += `&sort=`;
+        if (keyword == '') {
+            if (categoryIds != '') {
+                    href += `&sort=${sort}`;
+            } else if (type != '') {
+                href += `&sort=${sort}`;
+            } else{
+                href += `sort=${sort}`;
+            }
+        }else{
+            href += `&sort=${sort}`;
+        }
     }
 
-    document.location.href = href;
+    if (categoryIds=='' && type=='' && keyword=='' && sort =='') {
+        document.location.href = '/class';
+    }else{
+        document.location.href = href;
+    }
 }
