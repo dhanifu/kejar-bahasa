@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
+use App\CategoryClass;
 use App\Classs;
 use App\Module;
 use App\Purchased;
@@ -11,10 +14,85 @@ use Auth;
 
 class ClassController extends Controller
 {
+    private function categories()
+    {
+        return $categories = CategoryClass::orderBy('name', 'ASC')->get();
+    }
+
     public function index()
     {
-        $classes = Classs::all();
-        return view('users.class', compact('classes'));
+        $type = request()->type;
+        $category = request()->filter;
+        $keyword = request()->keyword;
+        $sort = request()->sort;
+        $classes = QueryBuilder::for(Classs::class)->with('category')->distinct();
+        
+        switch ($type) {
+            case 'free':
+                $classes = $classes->where("price",0);
+                break;
+            
+            case 'paid':
+                $classes = $classes->where("price","!=",0);
+                break;
+        }
+
+        if (!empty($category)) {
+            $classes = $classes->allowedFilters([
+                                    AllowedFilter::exact('category', 'category_id')
+                                ]);
+        }
+
+        if (!empty($keyword)){
+            $classes = $classes->where("name","LIKE","%{$keyword}%");
+        }
+
+        switch ($sort) {
+            case 'oldest':
+                $classes = $classes->orderBy("created_at", 'DESC');
+                break;
+
+            case 'newest':
+                $classes = $classes->orderBy("created_at", "ASC");
+                break;
+
+            case 'highest_price':
+                $classes = $classes->orderBy("price", "DESC");
+                break;
+
+            case 'lowest_price':
+                $classes = $classes->orderBy("price", "ASC");
+                break;
+        }
+        
+        $classes = $classes->paginate(9);
+        $categories = $this->categories();
+
+        return view('users.class', compact(
+            'categories', 'classes'
+        ));
+    }
+
+    public function searchClass(Request $request)
+    {
+        $keyword = $request->keyword;
+        $classList = Classs::with('category')->distinct()
+                    ->where('classses.name','LIKE',"%{$request->keyword}%")
+                    ->take(5)
+                    ->get();
+        $data = [];
+
+        foreach ($classList as $class) {
+            $data[] = array(
+                'category' => $class->category->name,
+                'name' => $class->name,
+                'picture' => $class->picture,
+                'price' => $class->price,
+                'link' => route('user.class.class', $class->code)
+            );
+        }
+
+        return response()->json($data);
     }
 
     public function class($code)
