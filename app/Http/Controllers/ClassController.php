@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use App\CategoryClass;
 use App\Classs;
 use App\Module;
@@ -20,33 +22,47 @@ class ClassController extends Controller
     public function index()
     {
         $type = request()->type;
-        $category = request()->category;
+        $category = request()->filter;
         $keyword = request()->keyword;
         $sort = request()->sort;
-        $classes = Classs::with('category')->distinct();
-
-        if ($category != null) {
-            $classes = $classes->where('category_id', $category);
+        $classes = QueryBuilder::for(Classs::class)->with('category')->distinct();
+        
+        switch ($type) {
+            case 'free':
+                $classes = $classes->where("price",0);
+                break;
+            
+            case 'paid':
+                $classes = $classes->where("price","!=",0);
+                break;
         }
 
-        if ($type != null && $type == 'free') {
-            $classes = $classes->where('price',0);
-        } elseif ($type != null && $type == 'paid') {
-            $classes = $classes->where('price','!=', 0);
+        if (!empty($category)) {
+            $classes = $classes->allowedFilters([
+                                    AllowedFilter::exact('category', 'category_id')
+                                ]);
         }
 
-        if ($keyword != null) {
-            $classes = $classes->where('name', 'LIKE',"%{$keyword}%");
+        if (!empty($keyword)){
+            $classes = $classes->where("name","LIKE","%{$keyword}%");
         }
 
-        if ($sort != null && $sort == 'newest') {
-            $classes = $classes->orderBy('created_at', 'DESC');
-        } elseif ($sort != null && $sort == 'oldest') {
-            $classes = $classes->orderBy('created_at', 'ASC');
-        } elseif ($sort != null && $sort == 'highest_price') {
-            $classes = $classes->orderBy('created_at', 'DESC');
-        } elseif ($sort != null && $sort == 'lowest_price') {
-            $classes = $classes->orderBy('created_at', 'ASC');
+        switch ($sort) {
+            case 'oldest':
+                $classes = $classes->orderBy("created_at", 'DESC');
+                break;
+
+            case 'newest':
+                $classes = $classes->orderBy("created_at", "ASC");
+                break;
+
+            case 'highest_price':
+                $classes = $classes->orderBy("price", "DESC");
+                break;
+
+            case 'lowest_price':
+                $classes = $classes->orderBy("price", "ASC");
+                break;
         }
         
         $classes = $classes->paginate(9);
