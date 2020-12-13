@@ -257,4 +257,23 @@ class ClassController extends Controller
 
         return redirect()->back()->with('success', 'Modul berhasil terhapus');
     }
+
+    public function sort(Request $request)
+    {
+        /*
+        $modules = Module::all();
+
+        foreach ($modules as $module) {
+            foreach ($request->sort as $sort) {
+                if ($sort['id'] == $module->id) {
+                    $module->update([
+                        'sort' => $sort['position']
+                    ]);
+                }
+            }
+        }
+
+        return response('Update Successfully', 200);
+        */
+    }
 }

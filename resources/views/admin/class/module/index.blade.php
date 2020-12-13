@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('meta')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('title', 'Class - List Module')
 
 @section('page-title', 'List Module dari Kelas '.$kelas->name)
@@ -52,9 +55,9 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tableModule">
                             @foreach($modules as $module)
-                            <tr>
+                            <tr id="row1" data-id={{$module->id}}>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$module->title}}</td>
                                 <td>{{$module->created_at->format('d M Y')}}</td>
@@ -90,8 +93,18 @@
 @endsection
 
 @section('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script>
         $('#dataTable').DataTable();
+
+        $('#tableModule').sortable({
+            items: "tr",
+            cursor: "move",
+            opacity: 0.6,
+            update: function(){
+                urutkan();
+            }
+        });
         
         function confirmDelete(id){
             swal({
@@ -103,6 +116,33 @@
             }).then((willDelete)=>{
                 if(willDelete){
                     $('#data-' + id).submit();
+                }
+            });
+        }
+
+        function urutkan(){
+            let sort = [];
+            let token = $('meta[name="csrf-token"]').attr('content')
+            $('tr.row1').each(function(index,element) {
+                sort.push({
+                    id: $(this).attr('data-id'),
+                    position: index+1
+                });
+            });
+
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: "{{ route('admin.class.module.sort',$id) }}",
+                data: {
+                    sort: sort, _token: token
+                },
+                success: function(response){
+                    /*if (response.status == "success") {
+                        console.log('r '+response+' sukses');
+                    } else {
+                        console.log('r '+response+' gagal');
+                    }*/
                 }
             });
         }

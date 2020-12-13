@@ -56,6 +56,7 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
 
         Route::prefix('{id}/modules')->name('module.')->group(function(){
             Route::get('/', 'Admin\ClassController@showModule')->name('index');
+            Route::post('/sort', 'Admin\ClassController@sort')->name('sort');
             Route::get('/new', 'Admin\ClassController@newModule')->name('create');
             Route::post('/new', 'Admin\ClassController@storeModule')->name('store');
             Route::get('/{module}', 'Admin\ClassController@previewModule')->name('show');
