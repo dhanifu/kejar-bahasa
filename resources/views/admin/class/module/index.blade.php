@@ -138,11 +138,12 @@
                     sort: sort, _token: token
                 },
                 success: function(response){
-                    /*if (response.status == "success") {
+                    // Kemungkinan Masih bug
+                    if (response.status == "success") {
                         console.log('r '+response+' sukses');
                     } else {
                         console.log('r '+response+' gagal');
-                    }*/
+                    }
                 }
             });
         }

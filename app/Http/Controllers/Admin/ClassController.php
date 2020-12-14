@@ -260,7 +260,8 @@ class ClassController extends Controller
 
     public function sort(Request $request)
     {
-        /*
+
+        // belum bikin field `sort` nya
         $modules = Module::all();
 
         foreach ($modules as $module) {
@@ -274,6 +275,5 @@ class ClassController extends Controller
         }
 
         return response('Update Successfully', 200);
-        */
     }
 }
