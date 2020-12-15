@@ -166,7 +166,7 @@ class ClassController extends Controller
     
     public function showModule($id)
     {
-        $modules = Module::where('class_id', $id)->orderBy('created_at', 'ASC')->get();
+        $modules = Module::where('class_id', $id)->orderBy('sort', 'ASC')->get();
         $kelas = Classs::find($id);
         if (empty($kelas)) {
             dd('Nanti Nampilin Halaman 404 Not Found, Karena Data Kelas Dengan ID:'.$id.' Tidak Ada');
@@ -174,9 +174,24 @@ class ClassController extends Controller
         return view('admin.class.module.index', compact('id', 'modules', 'kelas'));
     }
 
+    public function sortModule(Request $request)
+    {
+        $modules = Module::all();
+
+        foreach ($modules as $m) {
+            foreach ($request->weight as $sort) {
+                if ($sort['id'] == $m->id) {
+                    $m->update(['sort' => $sort['position']]);
+                }
+            }
+        }
+        return response('Update berhasil', 200);
+    }
+
     public function previewModule($id, Module $module)
     {
-        return view('admin.class.module.show', compact('id', 'module'));
+        $kelas = Classs::find($id);
+        return view('admin.class.module.show', compact('id', 'kelas', 'module'));
     }
 
     public function newModule($id)
@@ -195,6 +210,10 @@ class ClassController extends Controller
             'title' => 'required|string',
             'content' => 'required'
         ]);
+            
+        // Nilai sort terakhir ditambah 1
+        $m = Module::latest()->first();
+        $m = $m->sort + 1;
         
         $code = date('dmY') . Str::random(14) . strtolower(substr($request->title, 0, 3));
 
@@ -202,6 +221,7 @@ class ClassController extends Controller
             $module = Module::create([
                 'code' => $code,
                 'class_id' => $id,
+                'sort' => $m,
                 'title' => $request->title,
                 'content' => $request->content
             ]);
@@ -256,24 +276,5 @@ class ClassController extends Controller
         }
 
         return redirect()->back()->with('success', 'Modul berhasil terhapus');
-    }
-
-    public function sort(Request $request)
-    {
-
-        // belum bikin field `sort` nya
-        $modules = Module::all();
-
-        foreach ($modules as $module) {
-            foreach ($request->sort as $sort) {
-                if ($sort['id'] == $module->id) {
-                    $module->update([
-                        'sort' => $sort['position']
-                    ]);
-                }
-            }
-        }
-
-        return response('Update Successfully', 200);
     }
 }

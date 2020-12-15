@@ -1,7 +1,4 @@
 @extends('layouts.admin')
-@section('meta')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection
 @section('title', 'Class - List Module')
 
 @section('page-title', 'List Module dari Kelas '.$kelas->name)
@@ -45,6 +42,7 @@
                     </div>
                 @endif
                 <div class="table-responsive">
+                    <h5 class="text-primary">Anda bisa mengubah urutan dengan cara drag rownya</h5>
                     <table class="table table-bordered" id="dataTable">
                         <thead>
                             <tr>
@@ -57,8 +55,8 @@
                         </thead>
                         <tbody id="tableModule">
                             @foreach($modules as $module)
-                            <tr id="row1" data-id={{$module->id}}>
-                                <td>{{$loop->iteration}}</td>
+                            <tr class="row1" data-id={{$module->id}}>
+                                <td style="width: 1px"><i class="fa fa-sort"></i></td>
                                 <td>{{$module->title}}</td>
                                 <td>{{$module->created_at->format('d M Y')}}</td>
                                 <td>{{$module->updated_at->format('d M Y')}}</td>
@@ -96,15 +94,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script>
         $('#dataTable').DataTable();
-
-        $('#tableModule').sortable({
-            items: "tr",
-            cursor: "move",
-            opacity: 0.6,
-            update: function(){
-                urutkan();
-            }
-        });
         
         function confirmDelete(id){
             swal({
@@ -120,32 +109,44 @@
             });
         }
 
-        function urutkan(){
-            let sort = [];
-            let token = $('meta[name="csrf-token"]').attr('content')
-            $('tr.row1').each(function(index,element) {
-                sort.push({
-                    id: $(this).attr('data-id'),
-                    position: index+1
-                });
-            });
-
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: "{{ route('admin.class.module.sort',$id) }}",
-                data: {
-                    sort: sort, _token: token
-                },
-                success: function(response){
-                    // Kemungkinan Masih bug
-                    if (response.status == "success") {
-                        console.log('r '+response+' sukses');
-                    } else {
-                        console.log('r '+response+' gagal');
-                    }
+        $(function() {
+            
+            $('#tableModule').sortable({
+                items: "tr",
+                cursor: "move",
+                opacity: 0.6,
+                update: function(){
+                    sendWeightToServer();
                 }
             });
-        }
+
+            function sendWeightToServer(){
+                let weight = [];
+                let token = $('meta[name="csrf-token"]').attr('content');
+                $('tr.row1').each(function(index,element) {
+                    weight.push({
+                        id: $(this).attr('data-id'),
+                        position: index+1
+                    });
+                });
+
+                $.ajax({
+                    type: "POST", 
+                    dataType: "json", 
+                    url: "{{ route('admin.class.module.sort',$id) }}",
+                    data: {
+                        weight: weight,
+                        _token: token
+                    },
+                    success: function(response) {
+                        if (response.status == "success") {
+                            console.log(response);
+                        } else {
+                            console.log(response);
+                        }
+                    }
+                });
+            }
+        });
     </script>
 @endsection
