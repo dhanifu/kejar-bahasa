@@ -98,7 +98,14 @@ class ClassController extends Controller
     public function class($code)
     {
         $class = Classs::where('code', $code)->first();
-        return view('users.preview', compact('class'));
+        $userLogged = Auth::check();
+        if ($userLogged) {
+            $userLogged = 1;
+        } else {
+            $userLogged = 0;
+        }
+        
+        return view('users.preview', compact('class', 'userLogged'));
     }
 
     public function beli(Request $request, Classs $class)

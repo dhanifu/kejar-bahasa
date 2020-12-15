@@ -80,18 +80,19 @@
                     @else
                         Harga : <span class="badge badge-primary" style="font-weight: bold">Free</span>
                     @endif
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">
+                    <button class="btn btn-success float-right" data-toggle="modal" 
+                            @if($userLogged==0) onclick="redirectLogin()" @else data-target="#modalBeli" @endif>
                         Checkout
                     </button>
                 </div>
             </div>
         </div>
         
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalBeli" tabindex="-1" role="dialog" aria-labelledby="modalBeliLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
+                <h5 class="modal-title" id="modalBeliLabel">Pembayaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="outline: none">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -158,4 +159,37 @@
 
 @section('image-footer')        
     <img src="{{ asset('user/image/logo3.png') }}" class="img-fluid" alt=""/>
+@endsection
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function redirectLogin(){
+            let timerInterval
+            Swal.fire({
+                title: 'Kamu Harus Login!',
+                icon: 'warning',
+                timer: 1300,
+                didOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                        b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    document.location.href="{{ route('login') }}"
+                }
+            });
+        }
+    </script>
 @endsection
