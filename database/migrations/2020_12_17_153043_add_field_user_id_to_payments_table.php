@@ -14,7 +14,7 @@ class AddFieldUserIdToPaymentsTable extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('class_id');
+            $table->unsignedBigInteger('user_id')->after('purchased_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddFieldUserIdToPaymentsTable extends Migration
     public function down()
     {
         Schema::table('payments', function (Blueprint $table) {
-            //
+            $table->dropColumn('user_id');
         });
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Contact;
 class ContactSeeder extends Seeder
 {
     /**
@@ -11,6 +11,12 @@ class ContactSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Contact::create([
+            'email' => 'management@kejarbahasa.com',
+            'no_tlp' => '081314151617',
+            'instagram' => 'kejarbahasa',
+            'facebook' => 'kejarbahasa',
+            'twitter' => 'kejarbahasa'
+        ]);
     }
 }
