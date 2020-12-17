@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Purchased;
-
 class HomeController extends Controller
 {
     /**
@@ -49,6 +48,10 @@ class HomeController extends Controller
     }
 
     public function history(){
-
+        $user_id = Auth::user()->id;
+        $historys = Purchased::with(['class','user'])
+                        ->where('user_id', $user_id)
+                        ->get();
+        return view('users.dashboard.history', compact('historys'));
     }
 }
