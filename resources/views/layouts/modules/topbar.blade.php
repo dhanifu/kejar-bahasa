@@ -9,6 +9,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
+                        @role('admin')
                         <a href="{{route('admin.home')}}">
                             <b class="logo-icon">
                                 <img src="{{asset('admin/assets/images/kejarbahasa.png')}}" alt="homepage" class="dark-logo"  width="200" />
@@ -16,6 +17,15 @@
                             </b>
                             <!--End Logo icon -->
                         </a>
+                        @elserole('user')
+                        <a href="{{route('user.home')}}">
+                            <b class="logo-icon">
+                                <img src="{{asset('admin/assets/images/kejarbahasa.png')}}" alt="homepage" class="dark-logo"  width="200" />
+                               
+                            </b>
+                            <!--End Logo icon -->
+                        </a>
+                        @endrole
                     </div>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -55,9 +65,15 @@
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                @role('admin')
                                 <a class="dropdown-item" href="{{route('admin.profile.index')}}"><i data-feather="user"
                                         class="svg-icon mr-2 ml-1"></i>
                                     My Profile</a>
+                                @elserole('user')
+                                <a class="dropdown-item" href="{{route('user.dashboard.profile.index')}}"><i data-feather="user"
+                                        class="svg-icon mr-2 ml-1"></i>
+                                    My Profile</a>
+                                @endrole
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         <i data-feather="power" class="svg-icon mr-2 ml-1"></i>

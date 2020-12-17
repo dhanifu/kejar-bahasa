@@ -27,6 +27,12 @@ Route::name('user.')->group(function(){
     Route::prefix('dashboard')->name('dashboard.')->middleware('role:user')->group(function(){
         Route::get('/myclass', 'HomeController@myClass')->name('myclass');
         route::get('/history', 'HomeController@history')->name('history');
+
+        Route::prefix('profile')->name('profile.')->group(function(){
+            Route::get('/', 'HomeController@profile')->name('index');
+            Route::put('/{user}/update', 'HomeController@update')->name('update');
+            Route::patch('/change-password', 'HomeController@changePassword')->name('changePassword');
+        });
     });
     
     Route::prefix('class')->name('class.')->group(function(){
