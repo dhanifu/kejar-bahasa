@@ -109,8 +109,8 @@
                     <span class="hide-menu">Applications</span>
                 </li>
 
-                <li class="sidebar-item @if(request()->routeIs('admin.class.*')) selected @endif">
-                    <a class="sidebar-link @if(request()->routeIs('admin.class.*')) active @endif" href="{{route('admin.class.index')}}"
+                <li class="sidebar-item @if(request()->routeIs('user.dashboard.myclass')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('user.dashboard.myclass')) active @endif" href="{{route('user.dashboard.myclass')}}"
                         aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
                         <span
@@ -119,8 +119,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item @if(request()->routeIs('admin.report.*')) selected @endif">
-                    <a class="sidebar-link @if(request()->routeIs('admin.report.*')) active @endif" href="{{route('admin.report.index')}}"
+                <li class="sidebar-item @if(request()->routeIs('user.dashboard.history')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('user.dashboard.history')) active @endif" href="{{route('user.dashboard.history')}}"
                         aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
                         <span

@@ -22,6 +22,12 @@ Route::name('user.')->group(function(){
     Route::get('/contact', 'PagesController@contact')->name('contact');
 
     Route::get('/dashboard', 'HomeController@index')->middleware('role:user')->name('home');
+
+    //dashboard user
+    Route::prefix('dashboard')->name('dashboard.')->middleware('role:user')->group(function(){
+        Route::get('/myclass', 'HomeController@myClass')->name('myclass');
+        route::get('/history', 'HomeController@history')->name('history');
+    });
     
     Route::prefix('class')->name('class.')->group(function(){
         Route::get('/', 'ClassController@index')->name('index');
@@ -29,10 +35,6 @@ Route::name('user.')->group(function(){
         Route::get('/{code}', 'ClassController@class')->name('class');
         Route::post('/{class}/buy', 'ClassController@beli')->middleware('role:user')->name('beli');
         Route::get('/{class}/{module}/', 'ClassController@module')->name('module');
-    });
-
-    Route::prefix('myclass')->name('myclass.')->group(function(){
-        
     });
 });
 

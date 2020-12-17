@@ -37,7 +37,11 @@
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
+                                    @role('admin')
                                     <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Dashboard</a></li>
+                                    @elserole('user')
+                                    <li class="breadcrumb-item"><a href="{{route('user.home')}}">Dashboard</a></li>
+                                    @endrole
                                     @yield('breadcrumb')
                                 </ol>
                             </nav>
