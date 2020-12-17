@@ -27,7 +27,7 @@ class HomeController extends Controller
         if (Auth::user()->hasRole('admin')) {
             return redirect()->route('admin.home');
         } elseif (Auth::user()->hasRole('user')){
-            return view('peserta.dashboard');
+            return view('users.dashboard');
         }
     }
 }

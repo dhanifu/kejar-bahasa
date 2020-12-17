@@ -30,6 +30,10 @@ Route::name('user.')->group(function(){
         Route::post('/{class}/buy', 'ClassController@beli')->middleware('role:user')->name('beli');
         Route::get('/{class}/{module}/', 'ClassController@module')->name('module');
     });
+
+    Route::prefix('myclass')->name('myclass.')->group(function(){
+        
+    });
 });
 
 
