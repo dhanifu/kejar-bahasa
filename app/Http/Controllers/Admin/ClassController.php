@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classs;
+use App\Module;
+use Auth;
 use App\CategoryClass;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -158,5 +160,101 @@ class ClassController extends Controller
 
     public function show(Classs $classs){
         return view('admin.class.show', compact('classs'));
+    }
+
+
+    
+    public function showModule($id)
+    {
+        $modules = Module::where('class_id', $id)->orderBy('created_at', 'ASC')->get();
+        $kelas = Classs::find($id);
+        if (empty($kelas)) {
+            dd('Nanti Nampilin Halaman 404 Not Found, Karena Data Kelas Dengan ID:'.$id.' Tidak Ada');
+        }
+        return view('admin.class.module.index', compact('id', 'modules', 'kelas'));
+    }
+
+    public function previewModule($id, Module $module)
+    {
+        return view('admin.class.module.show', compact('id', 'module'));
+    }
+
+    public function newModule($id)
+    {
+        // $id = ID Kelas
+        $kelas = Classs::find($id);
+        if (empty($kelas)) {
+            dd('Nanti Nampilin Halaman 404 Not Found, Karena Data Kelas Dengan ID:'.$id.' Tidak Ada');
+        }
+        return view('admin.class.module.new', compact('id', 'kelas'));
+    }
+
+    public function storeModule(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'content' => 'required'
+        ]);
+        
+        $code = date('dmY') . Str::random(14) . strtolower(substr($request->title, 0, 3));
+
+        if (Auth::check()){
+            $module = Module::create([
+                'code' => $code,
+                'class_id' => $id,
+                'title' => $request->title,
+                'content' => $request->content
+            ]);
+        }else{
+            return redirect()->route('login');
+        }
+
+        if ($module->exists) {
+            return redirect()->route('admin.class.module.index', $id)->with('success', 'Modul berhasil dibuat');
+        } else {
+            return redirect()->back()->with('error', 'Modul gagal dibuat');
+        }
+    }
+
+    public function editModule($id, Module $module)
+    {
+        $kelas = Classs::find($id);
+        return view('admin.class.module.edit', compact('id', 'module', 'kelas'));
+    }
+
+    public function updateModule(Request $request, $id, Module $module)
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'content' => 'required'
+        ]);
+
+        if (Auth::check()){
+            try {
+                $module->update([
+                    'title' => $request->title,
+                    'content' => $request->content
+                ]);
+            } catch (\Illuminate\Database\QueryException $e) {
+                return redirect()->back()
+                        ->with('error', 'Modul gagal diupdate ('.$e.')');
+            }
+    
+            return redirect()->route('admin.class.module.index', $id)
+                    ->with('success', 'Modul berhasil diupdate');
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+    public function deleteModule($id, Module $module)
+    {
+        $module->delete();
+
+        if($module->exists){
+            return redirect()->back()->with('error', 'Modul tidak terhapus');
+        }
+
+        return redirect()->back()->with('success', 'Modul berhasil terhapus');
     }
 }

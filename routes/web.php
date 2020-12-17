@@ -25,6 +25,7 @@ Route::name('user.')->group(function(){
     
     Route::prefix('class')->name('class.')->group(function(){
         Route::get('/', 'ClassController@index')->name('index');
+        Route::get('/search/class', 'ClassController@searchClass')->name('ajax.searchClass');
         Route::get('/{code}', 'ClassController@class')->name('class');
         Route::post('/{class}/buy', 'ClassController@beli')->middleware('role:user')->name('beli');
         Route::get('/{class}/{module}/', 'ClassController@module')->name('module');
@@ -48,10 +49,21 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::get('/', 'Admin\ClassController@index')->name('index');
         Route::get('/new', 'Admin\ClassController@create')->name('create');
         Route::post('/new', 'Admin\ClassController@store')->name('store');
-        Route::get('/{classs}/show', 'Admin\ClassController@show')->name('show');
+        Route::get('/{classs}', 'Admin\ClassController@show')->name('show');
         Route::get('/{classs}/edit', 'Admin\ClassController@edit')->name('edit');
         Route::put('/{classs}/update', 'Admin\ClassController@update')->name('update');
         Route::delete('/{classs}/delete', 'Admin\ClassController@destroy')->name('destroy');
+
+        Route::prefix('{id}/modules')->name('module.')->group(function(){
+            Route::get('/', 'Admin\ClassController@showModule')->name('index');
+            Route::get('/new', 'Admin\ClassController@newModule')->name('create');
+            Route::post('/new', 'Admin\ClassController@storeModule')->name('store');
+            Route::get('/{module}', 'Admin\ClassController@previewModule')->name('show');
+            Route::get('/{module}/preview', 'Admin\ClassController@previewModule')->name('show');
+            Route::get('/{module}/edit', 'Admin\ClassController@editModule')->name('edit');
+            Route::put('/{module}/edit', 'Admin\ClassController@updateModule')->name('update');
+            Route::delete('/{module}/delete', 'Admin\ClassController@deleteModule')->name('destroy');
+        });
     });
 
     Route::prefix('module')->name('module.')->group(function(){
@@ -76,5 +88,10 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::get('/{about}/edit', 'Admin\AboutController@edit')->name('edit');
         Route::put('/{about}/update', 'Admin\AboutController@update')->name('update');
         
+    });
+
+    Route::prefix('reports')->name('report.')->group(function(){
+        Route::get('/', 'Admin\ReportController@index')->name('index');
+        Route::get('/pdf/{daterange}', 'Admin\ReportController@reportPdf')->name('pdf');
     });
 });
