@@ -16,18 +16,26 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    private function greeting()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $jam = date('H');
+        $name = Auth::user()->name;
+        if ($jam >= 18) {
+            $greeting = "Good Night ". $name;
+        } elseif ($jam >= 12) {
+            $greeting = "Good Afternoon ". $name;
+        } elseif ($jam < 12) {
+            $greeting = "Good Morning ". $name;
+        }
+        return $greeting;
+    }
     public function index()
     {
         if (Auth::user()->hasRole('admin')) {
             return redirect()->route('admin.home');
         } elseif (Auth::user()->hasRole('user')){
-            return view('users.dashboard');
+            return view('users.dashboard', ['greeting'=>$this->greeting()]);
         }
     }
 }
