@@ -6,6 +6,7 @@
             <ul id="sidebarnav">
 
                 {{-- DASHBOARD --}}
+            @role('admin')
                 <li class="sidebar-item @if(request()->routeIs('admin.home')) selected @endif"> 
                     <a class="sidebar-link @if(request()->routeIs('admin.home')) active @endif"
                         href="{{route('admin.home')}}" aria-expanded="false">
@@ -94,6 +95,41 @@
                     </a>
                 </li>
             </ul>
+            @elserole('user')
+                <li class="sidebar-item @if(request()->routeIs('user.home')) selected @endif"> 
+                    <a class="sidebar-link @if(request()->routeIs('user.home')) active @endif"
+                        href="{{route('user.home')}}" aria-expanded="false">
+                        <i data-feather="home" class="feather-icon"></i>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="list-divider"></li>
+                <li class="nav-small-cap">
+                    <span class="hide-menu">Applications</span>
+                </li>
+
+                <li class="sidebar-item @if(request()->routeIs('user.dashboard.myclass')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('user.dashboard.myclass')) active @endif" href="{{route('user.dashboard.myclass')}}"
+                        aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span
+                            class="hide-menu">MyClass
+                        </span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item @if(request()->routeIs('user.dashboard.history')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('user.dashboard.history')) active @endif" href="{{route('user.dashboard.history')}}"
+                        aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span
+                            class="hide-menu">History
+                        </span>
+                    </a>
+                </li>
+
+            @endrole
         </nav>
         <!-- End Sidebar navigation -->
     </div>
