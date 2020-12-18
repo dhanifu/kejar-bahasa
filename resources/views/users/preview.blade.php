@@ -75,15 +75,17 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
+                    <div class="float-right">
                     @if ($class->price != 0)
                         Harga : <span style="font-weight: bold">Rp {{ number_format($class->price) }}</span>
                     @else
                         Harga : <span class="badge badge-primary" style="font-weight: bold">Free</span>
                     @endif
-                    <button class="btn btn-success float-right" data-toggle="modal" 
+                    <button class="btn btn-success ml-4" data-toggle="modal" 
                             @if($userLogged==0) onclick="redirectLogin()" @else data-target="#modalBeli" @endif>
                         Checkout
                     </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,9 +102,11 @@
                 <form action="{{ route('user.class.beli', $class->id) }}" method="post">
                     @csrf
                     <div class="modal-body">
+                        @if($class->price == 0)
                         <div class="alert alert-success fade show wow slideInDown" role="alert">
                             Ini kelas gratis, langsung klik <span class="btn btn-sm text-white bg-primary" style="cursor: default">Beli</span>
                         </div>
+                        @endif
                         <div class="form-group">
                             <label for="">Class Code</label>
                             <input type="text" name="invoice" class="form-control"
@@ -128,10 +132,30 @@
                             </select>
                             <p class="text-danger">{{ $errors->first('transfer_to') }}</p>
                         </div>
-                        <div class="form-group">
-                            <label for="amount">Jumlah Transfer</label>
-                            <input type="number" name="amount" class="form-control" value="{{ old('amount') }}" required>
-                            <p class="text-danger">{{ $errors->first('amount') }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Harga</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Rp</div>
+                                        </div>
+                                        <input type="text" class="form-control" value="{{$class->price}}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="amount">Jumlah Transfer</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Rp</div>
+                                        </div>
+                                        <input type="number" name="amount" class="form-control" value="{{ old('amount') }}" required>
+                                        <p class="text-danger">{{ $errors->first('amount') }}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @else
                         <div class="form-group">
