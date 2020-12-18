@@ -50,11 +50,11 @@ class ClassController extends Controller
 
         switch ($sort) {
             case 'oldest':
-                $classes = $classes->orderBy("created_at", 'DESC');
+                $classes = $classes->orderBy("created_at", 'ASC');
                 break;
 
             case 'newest':
-                $classes = $classes->orderBy("created_at", "ASC");
+                $classes = $classes->orderBy("created_at", "DESC");
                 break;
 
             case 'highest_price':
@@ -64,6 +64,10 @@ class ClassController extends Controller
             case 'lowest_price':
                 $classes = $classes->orderBy("price", "ASC");
                 break;
+        }
+
+        if (empty($sort)) {
+            $classes = $classes->orderBy('created_at','DESC');
         }
         
         $classes = $classes->paginate(9);
