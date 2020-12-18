@@ -22,6 +22,18 @@ Route::name('user.')->group(function(){
     Route::get('/contact', 'PagesController@contact')->name('contact');
 
     Route::get('/dashboard', 'HomeController@index')->middleware('role:user')->name('home');
+
+    //dashboard user
+    Route::prefix('dashboard')->name('dashboard.')->middleware('role:user')->group(function(){
+        Route::get('/myclass', 'HomeController@myClass')->name('myclass');
+        route::get('/history', 'HomeController@history')->name('history');
+
+        Route::prefix('profile')->name('profile.')->group(function(){
+            Route::get('/', 'HomeController@profile')->name('index');
+            Route::put('/{user}/update', 'HomeController@update')->name('update');
+            Route::patch('/change-password', 'HomeController@changePassword')->name('changePassword');
+        });
+    });
     
     Route::prefix('class')->name('class.')->group(function(){
         Route::get('/', 'ClassController@index')->name('index');

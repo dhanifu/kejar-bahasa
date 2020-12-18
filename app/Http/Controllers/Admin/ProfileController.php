@@ -82,13 +82,6 @@ class ProfileController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user)
     {
         $this->validate($request, [
@@ -97,7 +90,6 @@ class ProfileController extends Controller
         ]);
             
         if ($request->hasFile('picture')) {
-           
             $file = $request->file('picture');
             $filename = date('dmY').'-'.Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
             
@@ -121,14 +113,4 @@ class ProfileController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
