@@ -118,7 +118,7 @@
             .center a{
                 font-size: 15px;
             }
-        }s
+        }
  
     </style>    
 @endsection

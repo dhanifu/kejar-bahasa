@@ -92,11 +92,6 @@
                 .text-footer{
                     margin-top: 2%;
                 }
-                
-                .navbar {
-                    background: transparent;
-                    backdrop-filter: blur(40px);
-                }
             }
 
             @keyframes fadeIn {
@@ -130,7 +125,7 @@
                     <a class="nav-link" href="{{ route('user.class.index') }}">Kelas</a>
                 </li>
                 <li class="nav-item mr-md-4{{ request()->is('about-us') ? ' active' : ''}}">
-                    <a class="nav-link" href="{{ route('user.about') }}">About Us</a>
+                    <a class="nav-link" href="{{ route('user.about') }}">Tentang</a>
                 </li>
                 <li class="nav-item mr-md-4{{ request()->is('contact') ? ' active' : ''}}">
                     <a class="nav-link" href="{{ route('user.contact') }}">Contact</a>
@@ -171,7 +166,7 @@
 
     @yield('content')
 
-    <div class="footer-2 mt-4">
+    <div class="footer-2">
         <div class="row">
             <div class="col-md-6 img-footer">
                 @yield('image-footer')
