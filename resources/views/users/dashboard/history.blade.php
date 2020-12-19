@@ -20,14 +20,20 @@
                                 <th>#</th>
                                 <th>Class</th>
                                 <th>Price</th>
+                                <th>Transfer To</th>
+                                <th>Amount</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
                         @forelse($historys as $history)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$history->class->name}}</td>
-                                <td>{{$history->class->price}}</td>
+                                <td>{{$history->purchased->class->name}}</td>
+                                <td>{{$history->purchased->class->price}}</td>
+                                <td>{{$history->transfer_to}}</td>
+                                <td>{{$history->amount}}</td>
+                                <td>{{$history->created_at->format('d M Y')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
