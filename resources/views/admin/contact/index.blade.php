@@ -57,7 +57,7 @@
                                         <button type="button" class="btn btn-secondary btn-sm"
                                                 data-toggle="modal" data-target="#modalEdit"
                                                 onclick="editData({{$contact->id}})" data-email="{{$contact->email}}"
-                                                data-noTlp="{{$contact->no_tlp}}" 
+                                                data-notlp="{{$contact->no_tlp}}" 
                                                 data-facebook="{{$contact->facebook}}"
                                                 data-instagram="{{$contact->instagram}}"
                                                 data-twitter="{{$contact->twitter}}">
@@ -186,16 +186,16 @@
         $('#modalEdit').on('show.bs.modal', function(e){
             let button = $(e.relatedTarget);
             let email = button.data('email');
-            let noTlp = button.data('noTlp');
+            let notlp = button.data('notlp');
             let facebook = button.data('facebook');
             let twitter = button.data('twitter');
             let instagram = button.data('instagram');
             let modal = $(this);
 
-            console.log(noTlp);
+            console.log(notlp);
 
             modal.find('.modal-body #edit_email').val(email);
-            modal.find('.modal-body #edit_noTlp').val(noTlp);
+            modal.find('.modal-body #edit_noTlp').val(notlp);
             modal.find('.modal-body #edit_facebook').val(facebook);
             modal.find('.modal-body #edit_instagram').val(instagram);
             modal.find('.modal-body #edit_twitter').val(twitter);

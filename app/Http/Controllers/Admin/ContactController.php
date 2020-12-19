@@ -14,8 +14,25 @@ class ContactController extends Controller
     }
 
 
-    public function update(Request $request, Contact $about)
+    public function update(Request $request, Contact $contact)
     {
-        //
+        
+        $this->validate($request, [
+            'email' => 'required|string',
+            'no_tlp' => 'required|string',
+            'facebook' => 'required|string',
+            'instagram' => 'required|string',
+            'twitter' => 'required|string',
+        ]);
+
+        $contact->update([
+            'email' => $request->email,
+            'no_tlp' => $request->no_tlp,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'twitter' => $request->twitter,
+        ]);
+
+        return redirect()->back()->with('success', 'contact Berhasil Diubah');
     }
 }
