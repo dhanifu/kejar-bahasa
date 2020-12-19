@@ -104,6 +104,11 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         
     });
 
+    Route::prefix('contact')->name('contact.')->group(function(){
+        Route::get('/', 'Admin\ContactController@index')->name('index');
+        Route::put('/{contact}/update', 'Admin\ContactController@update')->name('update');
+    });
+
     Route::prefix('reports')->name('report.')->group(function(){
         Route::get('/', 'Admin\ReportController@index')->name('index');
         Route::get('/pdf/{daterange}', 'Admin\ReportController@reportPdf')->name('pdf');

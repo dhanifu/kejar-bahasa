@@ -60,8 +60,8 @@
                 </li>
 
                 {{-- Contact --}}
-                <li class="sidebar-item ">
-                    <a class="sidebar-link" href="#"
+                <li class="sidebar-item @if(request()->routeIs('admin.contact.*')) selected @endif">
+                    <a class="sidebar-link @if(request()->routeIs('admin.contact.*')) selected @endif" href="{{route('admin.contact.index')}}"
                         aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
                         <span

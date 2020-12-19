@@ -11,4 +11,8 @@ class Payment extends Model
     public function purchased(){
         return $this->belongsTo('App\Purchased', 'purchased_id');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

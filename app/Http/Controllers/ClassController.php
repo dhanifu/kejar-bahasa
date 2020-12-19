@@ -137,6 +137,7 @@ class ClassController extends Controller
             if (empty($request->transfer_to) && empty($request->amount)) {
                 $payment = Payment::create([
                     'purchased_id' => $kelas->id,
+                    'user_id' => $user_id,
                     'transfer_to' => '-',
                     'amount' => 0
                 ]);
@@ -147,6 +148,7 @@ class ClassController extends Controller
                 ]);
                 $payment = Payment::create([
                     'purchased_id' => $kelas->id,
+                    'user_id' => $user_id,
                     'transfer_to' => $request->transfer_to,
                     'amount' => $request->amount
                 ]);

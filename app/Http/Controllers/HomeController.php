@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Purchased;
 use App\User;
+use App\Payment;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -55,7 +56,7 @@ class HomeController extends Controller
 
     public function history(){
         $user_id = Auth::user()->id;
-        $historys = Purchased::with(['class','user'])
+        $historys = Payment::with(['purchased','user'])
                         ->where('user_id', $user_id)
                         ->get();
         return view('users.dashboard.history', compact('historys'));
