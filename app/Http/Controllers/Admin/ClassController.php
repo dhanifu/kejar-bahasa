@@ -213,7 +213,11 @@ class ClassController extends Controller
             
         // Nilai sort terakhir ditambah 1
         $m = Module::latest()->first();
-        $m = $m->sort + 1;
+        if (!empty($m)) {
+            $m = $m->sort + 1;
+        } else {
+            $m = 1;
+        }
         
         $code = date('dmY') . Str::random(14) . strtolower(substr($request->title, 0, 3));
 
@@ -233,6 +237,29 @@ class ClassController extends Controller
             return redirect()->route('admin.class.module.index', $id)->with('success', 'Modul berhasil dibuat');
         } else {
             return redirect()->back()->with('error', 'Modul gagal dibuat');
+        }
+    }
+
+    public function uploadImageModule(Request $request, $id)
+    {
+        $class = Classs::find($id);
+        
+        if (!empty($request->file('upload'))) {
+            $file = $request->file('upload');
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+            $filename = $filename . "_" . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path("images/module/$class->name"), $filename);
+
+            $ckeditor = $request->input('CKEditorFuncNum');
+            $url = asset("images/module/$class->name/$filename");
+            $msg = 'Image uploaded successfuly';
+
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor,'$url','$msg')</script>";
+            
+            @header('Content-type: text/html; charset=utf-8');
+
+            return $response;
         }
     }
 
