@@ -70,6 +70,7 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
             Route::get('/', 'Admin\ClassController@showModule')->name('index');
             Route::post('/sort', 'Admin\ClassController@sortModule')->name('sort');
             Route::get('/new', 'Admin\ClassController@newModule')->name('create');
+            Route::post('/upload-image,', 'Admin\ClassController@uploadImageModule')->name('upload-image');
             Route::post('/new', 'Admin\ClassController@storeModule')->name('store');
             Route::get('/{module}', 'Admin\ClassController@previewModule')->name('show');
             Route::get('/{module}/preview', 'Admin\ClassController@previewModule')->name('show');
