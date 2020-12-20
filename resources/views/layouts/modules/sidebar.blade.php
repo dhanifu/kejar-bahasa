@@ -32,7 +32,8 @@
                 </li>
                 
                 {{-- KELAS --}}
-                <li class="sidebar-item @if(request()->routeIs('admin.class.*')) selected @endif">
+                <li class="sidebar-item @if(request()->routeIs('admin.class.*')) selected @endif"
+                    @if(request()->routeIs('admin.class.module.*'))&#8680; title="{{ $kelas->name }}" @endif>
                     <a class="sidebar-link @if(request()->routeIs('admin.class.*')) active @endif" href="{{route('admin.class.index')}}"
                         aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
