@@ -53,12 +53,12 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                @if (Auth::user()->picture)
-                                <img src="{{asset('images/profile/'.Auth::user()->picture)}}" alt="user" class="rounded-circle"
-                                    width="40">
+                                @if (empty(Auth::user()->picture))
+                                    <img id="user-image" src="{{asset('admin/assets/images/users/d3.jpg')}}" alt="user" class="rounded-circle"
+                                        width="40">
                                 @else
-                                <img src="{{asset('admin/assets/images/users/d3.jpg')}}" alt="user" class="rounded-circle"
-                                    width="40">
+                                    <img id="user-image" src="{{asset('images/profile/'.Auth::user()->picture)}}" alt="user" class="rounded-circle"
+                                        width="40">
                                 @endif
                                 <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
                                         class="text-dark">{{Auth::user()->name}}</span> <i data-feather="chevron-down"
