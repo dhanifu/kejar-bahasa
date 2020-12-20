@@ -204,7 +204,7 @@
                                                 {{ request()->sort=="oldest"?'selected':'' }}>
                                                 Terlama
                                             </option>
-                                            <option value="newest" {{empty(request()->sort)?'selected':''}}
+                                            <option value="newest"
                                                 {{ request()->sort=="newest"?'selected':'' }}>
                                                 Terbaru
                                             </option>
@@ -240,7 +240,7 @@
                                 </div>
                                 @empty
                                 <div class="col-md-12">
-                                    <h3>Kelas tidak ditemukan, mohon coba kata kunci lain atau yang lebih umum</h3>
+                                    <h3>Kelas tidak ditemukan</h3>
                                 </div>
                                 @endforelse
 
