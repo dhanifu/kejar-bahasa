@@ -54,6 +54,31 @@ class ProfileController extends Controller
         return $validator;
     }
 
+    // Change Image Image
+    public function changeImage(Request $request)
+    {
+        $image = $request->image;
+
+        list($type, $image) = explode(';', $image);
+        list(, $image)      = explode(',', $image);
+
+        $image = base64_decode($image);
+        $image_name= date('dmY').time() . '-' . Str::slug(Auth::user()->name) .'.png';
+
+        $user = User::find(Auth::user()->id);
+        if(!empty($user->picture)){
+            File::delete(public_path("images/profile/$user->picture"));
+        }
+        $user->update([
+            'picture' => $image_name
+        ]);
+
+        $path = public_path("images/profile/$image_name");
+        file_put_contents($path, $image);
+
+        return response()->json(['status'=>true]);
+    }
+
     // Change Password
     public function changePassword(Request $request)
     {
@@ -86,30 +111,16 @@ class ProfileController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'picture' => 'image|mimes:jpeg,jpg,png',
         ]);
-            
-        if ($request->hasFile('picture')) {
-            $file = $request->file('picture');
-            $filename = date('dmY').'-'.Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
-            
-            $file->move(public_path('images/profile'), $filename);
-            File::delete(public_path('images/profile/'. $user->picture));
+        
+        try {
             $user->update([
                 'name' => $request->name,
-                'picture' => $filename,
             ]);
 
             return redirect()->route('admin.profile.index')->with('success', 'profile berhasil diubah');
-        } elseif (empty($request->hasFile('picture'))) {
-            $user->update([
-                'name' => $request->name,
-                'picture' => $user->picture,
-            ]);
-
-            return redirect()->route('admin.profile.index')->with('success', 'profile berhasil diubah');
-        } else {
-            return redirect()->route('admin.profile.index')->with('error', 'profile gagal diubah');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('admin.profile.index')->with('error', "profile gagal diubah ($e)");
         }
     }
 

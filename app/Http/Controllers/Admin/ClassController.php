@@ -51,7 +51,7 @@ class ClassController extends Controller
         $this->validate($request, [
             'category_id' => 'required|exists:category_classes,id',
             'name' => 'required|string',
-            'picture' => 'required|image|mimes:png,jpeg,jpg',
+            'picture' => 'required|image|mimes:png,jpeg,jpg,webp',
             'price' => 'required|integer',
             'description' => 'required'
         ]);
