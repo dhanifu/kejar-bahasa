@@ -204,7 +204,7 @@
                                                 {{ request()->sort=="oldest"?'selected':'' }}>
                                                 Terlama
                                             </option>
-                                            <option value="newest"
+                                            <option value="newest" {{empty(request()->sort)?'selected':''}}
                                                 {{ request()->sort=="newest"?'selected':'' }}>
                                                 Terbaru
                                             </option>

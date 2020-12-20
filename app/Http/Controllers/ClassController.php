@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use DB;
 use App\CategoryClass;
 use App\Classs;
 use App\Module;
@@ -49,11 +50,11 @@ class ClassController extends Controller
 
         switch ($sort) {
             case 'oldest':
-                $classes = $classes->orderBy("created_at", 'DESC');
+                $classes = $classes->orderBy("created_at", 'ASC');
                 break;
 
             case 'newest':
-                $classes = $classes->orderBy("created_at", "ASC");
+                $classes = $classes->orderBy("created_at", "DESC");
                 break;
 
             case 'highest_price':
@@ -63,6 +64,10 @@ class ClassController extends Controller
             case 'lowest_price':
                 $classes = $classes->orderBy("price", "ASC");
                 break;
+        }
+
+        if (empty($sort)) {
+            $classes = $classes->orderBy('created_at','DESC');
         }
         
         $classes = $classes->paginate(9);
@@ -97,8 +102,28 @@ class ClassController extends Controller
 
     public function class($code)
     {
+        // harus bernilai 1 jika di count()
+        $purchaseds = DB::table('classses')
+            ->join('modules','classses.id','=','modules.class_id')
+            ->join('purchaseds', 'classses.id','=','purchaseds.class_id')
+            ->where('classses.code', $code)
+            ->where('purchaseds.user_id', Auth::user()->id)
+            ->orderBy('modules.sort')
+            ->first();
+        
+        if (!empty($purchaseds)) {
+            return redirect()->route('user.class.module', [$code,$purchaseds->code]);
+        }
+
         $class = Classs::where('code', $code)->first();
-        return view('users.preview', compact('class'));
+        $userLogged = Auth::check();
+        if ($userLogged) {
+            $userLogged = 1;
+        } else {
+            $userLogged = 0;
+        }
+        
+        return view('users.preview', compact('class', 'userLogged'));
     }
 
     public function beli(Request $request, Classs $class)
@@ -144,7 +169,7 @@ class ClassController extends Controller
     {
         if (Auth::check()){
             $c = Classs::where('code', $class)->first();
-            $bab = Module::where('class_id', $c->id)->orderBy('created_at', 'ASC')->get();
+            $bab = Module::where('class_id', $c->id)->orderBy('sort', 'ASC')->get();
             $classes = Classs::where('code', $class)->with('module')->get();
             $modul = Module::where('code', $module)->first();
 

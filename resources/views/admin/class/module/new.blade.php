@@ -73,7 +73,10 @@
 @section('js')
 <script src="{{asset('admin/assets/libs/ckeditor/ckeditor.js')}}"></script>
     <script>
-        CKEDITOR.replace('content');
+        CKEDITOR.replace('content', {
+            filebrowserUploadUrl: "{{ route('admin.class.module.upload-image',['id' => $id, '_token' => csrf_token() ]) }}",
+            filebrowserUploadMethod: 'form'
+        });
 
         function back(){
             swal({

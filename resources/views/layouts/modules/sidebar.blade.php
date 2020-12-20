@@ -36,22 +36,12 @@
                     <a class="sidebar-link @if(request()->routeIs('admin.class.*')) active @endif" href="{{route('admin.class.index')}}"
                         aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
-                        <span
-                            class="hide-menu">Class
+                        <span class="hide-menu">
+                            Class @if(request()->routeIs('admin.class.module.*'))&#8680; {{$kelas->name}}@endif
                         </span>
                     </a>
                 </li>
 
-                {{-- Module --}}
-                <li class="sidebar-item @if(request()->routeIs('admin.module.*')) selected @endif">
-                    <a class="sidebar-link @if(request()->routeIs('admin.module.*')) active @endif" href="{{route('admin.module.index')}}"
-                        aria-expanded="false">
-                        <i data-feather="tag" class="feather-icon"></i>
-                        <span
-                            class="hide-menu">Module
-                        </span>
-                    </a>
-                </li>
 
                 <li class="list-divider"></li>
                 <li class="nav-small-cap">

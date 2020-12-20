@@ -68,7 +68,9 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
 
         Route::prefix('{id}/modules')->name('module.')->group(function(){
             Route::get('/', 'Admin\ClassController@showModule')->name('index');
+            Route::post('/sort', 'Admin\ClassController@sortModule')->name('sort');
             Route::get('/new', 'Admin\ClassController@newModule')->name('create');
+            Route::post('/upload-image,', 'Admin\ClassController@uploadImageModule')->name('upload-image');
             Route::post('/new', 'Admin\ClassController@storeModule')->name('store');
             Route::get('/{module}', 'Admin\ClassController@previewModule')->name('show');
             Route::get('/{module}/preview', 'Admin\ClassController@previewModule')->name('show');
@@ -78,15 +80,16 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         });
     });
 
-    Route::prefix('module')->name('module.')->group(function(){
-        Route::get('/', 'Admin\ModuleController@index')->name('index');
-        Route::get('/new', 'Admin\ModuleController@create')->name('create');
-        Route::post('/new', 'Admin\ModuleController@store')->name('store');
-        Route::get('/{module}/preview', 'Admin\ModuleController@show')->name('show');
-        Route::get('/{module}/edit', 'Admin\ModuleController@edit')->name('edit');
-        Route::put('/{module}/edit', 'Admin\ModuleController@update')->name('update');
-        Route::delete('/{module}/delete', 'Admin\ModuleController@destroy')->name('destroy');
-    });
+    // Route::prefix('module')->name('module.')->group(function(){
+    //     Route::get('/', 'Admin\ModuleController@index')->name('index');
+    //     Route::post('/sort', 'Admin\ModuleController@sort')->name('sort');
+    //     Route::get('/new', 'Admin\ModuleController@create')->name('create');
+    //     Route::post('/new', 'Admin\ModuleController@store')->name('store');
+    //     Route::get('/{module}/preview', 'Admin\ModuleController@show')->name('show');
+    //     Route::get('/{module}/edit', 'Admin\ModuleController@edit')->name('edit');
+    //     Route::put('/{module}/edit', 'Admin\ModuleController@update')->name('update');
+    //     Route::delete('/{module}/delete', 'Admin\ModuleController@destroy')->name('destroy');
+    // });
 
     Route::prefix('profile')->name('profile.')->group(function(){
         Route::get('/', 'Admin\ProfileController@index')->name('index');

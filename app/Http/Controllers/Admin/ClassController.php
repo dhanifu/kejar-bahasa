@@ -166,7 +166,7 @@ class ClassController extends Controller
     
     public function showModule($id)
     {
-        $modules = Module::where('class_id', $id)->orderBy('created_at', 'ASC')->get();
+        $modules = Module::where('class_id', $id)->orderBy('sort', 'ASC')->get();
         $kelas = Classs::find($id);
         if (empty($kelas)) {
             dd('Nanti Nampilin Halaman 404 Not Found, Karena Data Kelas Dengan ID:'.$id.' Tidak Ada');
@@ -174,9 +174,24 @@ class ClassController extends Controller
         return view('admin.class.module.index', compact('id', 'modules', 'kelas'));
     }
 
+    public function sortModule(Request $request)
+    {
+        $modules = Module::all();
+
+        foreach ($modules as $m) {
+            foreach ($request->weight as $sort) {
+                if ($sort['id'] == $m->id) {
+                    $m->update(['sort' => $sort['position']]);
+                }
+            }
+        }
+        return response('Update berhasil', 200);
+    }
+
     public function previewModule($id, Module $module)
     {
-        return view('admin.class.module.show', compact('id', 'module'));
+        $kelas = Classs::find($id);
+        return view('admin.class.module.show', compact('id', 'kelas', 'module'));
     }
 
     public function newModule($id)
@@ -195,6 +210,14 @@ class ClassController extends Controller
             'title' => 'required|string',
             'content' => 'required'
         ]);
+            
+        // Nilai sort terakhir ditambah 1
+        $m = Module::latest()->first();
+        if (!empty($m)) {
+            $m = $m->sort + 1;
+        } else {
+            $m = 1;
+        }
         
         $code = date('dmY') . Str::random(14) . strtolower(substr($request->title, 0, 3));
 
@@ -202,6 +225,7 @@ class ClassController extends Controller
             $module = Module::create([
                 'code' => $code,
                 'class_id' => $id,
+                'sort' => $m,
                 'title' => $request->title,
                 'content' => $request->content
             ]);
@@ -213,6 +237,29 @@ class ClassController extends Controller
             return redirect()->route('admin.class.module.index', $id)->with('success', 'Modul berhasil dibuat');
         } else {
             return redirect()->back()->with('error', 'Modul gagal dibuat');
+        }
+    }
+
+    public function uploadImageModule(Request $request, $id)
+    {
+        $class = Classs::find($id);
+        
+        if (!empty($request->file('upload'))) {
+            $file = $request->file('upload');
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+            $filename = $filename . "_" . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path("images/module/$class->name"), $filename);
+
+            $ckeditor = $request->input('CKEditorFuncNum');
+            $url = asset("images/module/$class->name/$filename");
+            $msg = 'Image uploaded successfuly';
+
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor,'$url','$msg')</script>";
+            
+            @header('Content-type: text/html; charset=utf-8');
+
+            return $response;
         }
     }
 

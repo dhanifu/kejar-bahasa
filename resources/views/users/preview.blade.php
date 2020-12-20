@@ -75,23 +75,26 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
+                    <div class="float-right">
                     @if ($class->price != 0)
                         Harga : <span style="font-weight: bold">Rp {{ number_format($class->price) }}</span>
                     @else
                         Harga : <span class="badge badge-primary" style="font-weight: bold">Free</span>
                     @endif
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">
+                    <button class="btn btn-success ml-4" data-toggle="modal" 
+                            @if($userLogged==0) onclick="redirectLogin()" @else data-target="#modalBeli" @endif>
                         Checkout
                     </button>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalBeli" tabindex="-1" role="dialog" aria-labelledby="modalBeliLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
+                <h5 class="modal-title" id="modalBeliLabel">Pembayaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="outline: none">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -99,9 +102,11 @@
                 <form action="{{ route('user.class.beli', $class->id) }}" method="post">
                     @csrf
                     <div class="modal-body">
+                        @if($class->price == 0)
                         <div class="alert alert-success fade show wow slideInDown" role="alert">
                             Ini kelas gratis, langsung klik <span class="btn btn-sm text-white bg-primary" style="cursor: default">Beli</span>
                         </div>
+                        @endif
                         <div class="form-group">
                             <label for="">Class Code</label>
                             <input type="text" name="invoice" class="form-control"
@@ -127,10 +132,30 @@
                             </select>
                             <p class="text-danger">{{ $errors->first('transfer_to') }}</p>
                         </div>
-                        <div class="form-group">
-                            <label for="amount">Jumlah Transfer</label>
-                            <input type="number" name="amount" class="form-control" value="{{ old('amount') }}" required>
-                            <p class="text-danger">{{ $errors->first('amount') }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Harga</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Rp</div>
+                                        </div>
+                                        <input type="text" class="form-control" value="{{$class->price}}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="amount">Jumlah Transfer</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Rp</div>
+                                        </div>
+                                        <input type="number" name="amount" class="form-control" value="{{ old('amount') }}" required>
+                                        <p class="text-danger">{{ $errors->first('amount') }}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @else
                         <div class="form-group">
@@ -158,4 +183,37 @@
 
 @section('image-footer')        
     <img src="{{ asset('user/image/logo3.png') }}" class="img-fluid" alt=""/>
+@endsection
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function redirectLogin(){
+            let timerInterval
+            Swal.fire({
+                title: 'Kamu Harus Login!',
+                icon: 'warning',
+                timer: 1300,
+                didOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                        b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    document.location.href="{{ route('login') }}"
+                }
+            });
+        }
+    </script>
 @endsection
