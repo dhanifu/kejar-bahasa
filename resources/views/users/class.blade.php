@@ -225,7 +225,7 @@
                 
                                 @forelse($classes as $kelas)
                                 <div class="col-md-4 col-sm-6 mb-4">
-                                    <div class="card mb-3 shadow">
+                                    <div class="card mb-3 shadow animate__animated animate__fadeInUp">
                                         <img src="{{ asset('images/class/'.$kelas->picture) }}" class="card-img-top" alt="{{ $kelas->name }}">
                                         <div class="card-body">
                                             <div class="card-title">
