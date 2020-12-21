@@ -102,21 +102,23 @@ class ClassController extends Controller
 
     public function class($code)
     {
-        // harus bernilai 1 jika di count()
-        $purchaseds = DB::table('classses')
-            ->join('modules','classses.id','=','modules.class_id')
-            ->join('purchaseds', 'classses.id','=','purchaseds.class_id')
-            ->where('classses.code', $code)
-            ->where('purchaseds.user_id', Auth::user()->id)
-            ->orderBy('modules.sort')
-            ->first();
-        
-        if (!empty($purchaseds)) {
-            return redirect()->route('user.class.module', [$code,$purchaseds->code]);
+        $userLogged = Auth::check();
+        if($userLogged){
+            $purchaseds = DB::table('classses')
+                ->join('modules','classses.id','=','modules.class_id')
+                ->join('purchaseds', 'classses.id','=','purchaseds.class_id')
+                ->where('classses.code', $code)
+                ->where('purchaseds.user_id', Auth::user()->id)
+                ->orderBy('modules.sort')
+                ->first();
+            
+            if (!empty($purchaseds)) {
+                return redirect()->route('user.class.module', [$code,$purchaseds->code]);
+            }
         }
 
         $class = Classs::where('code', $code)->first();
-        $userLogged = Auth::check();
+        
         if ($userLogged) {
             $userLogged = 1;
         } else {
@@ -171,7 +173,19 @@ class ClassController extends Controller
             $c = Classs::where('code', $class)->first();
             $bab = Module::where('class_id', $c->id)->orderBy('sort', 'ASC')->get();
             $classes = Classs::where('code', $class)->with('module')->get();
-            $modul = Module::where('code', $module)->first();
+            $modul = Module::join('classses','modules.class_id','=','classses.id')
+                            ->where('modules.class_id', $c->id)
+                            ->where('modules.code', $module)->first();
+            if (empty($modul)) {
+                $purchaseds = DB::table('classses')
+                    ->join('modules','classses.id','=','modules.class_id')
+                    ->join('purchaseds', 'classses.id','=','purchaseds.class_id')
+                    ->where('classses.code', $class)
+                    ->where('purchaseds.user_id', Auth::user()->id)
+                    ->orderBy('modules.sort')
+                    ->first();
+                return redirect()->route('user.class.module', [$class,$purchaseds->code]);
+            }
 
             $purchased = Classs::join('purchaseds','classses.id','=','purchaseds.class_id')
                                 ->where('purchaseds.user_id', Auth::user()->id)
