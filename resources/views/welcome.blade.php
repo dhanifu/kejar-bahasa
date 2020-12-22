@@ -118,7 +118,7 @@
             .center a{
                 font-size: 15px;
             }
-        }s
+        }
  
     </style>    
 @endsection
@@ -128,8 +128,12 @@
         <div class="row">
             <div class="content col-md-6">
                 <h1>Kejar Bahasa</h1>
-                <p>Kejar Bahasa merupakan platform untuk meningkatkan kemampuan dibidang akademik dengan modul pelatihan terbaik yang ditujukan untuk pelajar, mahasiswa, dan pengajar di Indonesia</p>    
-                <a class="btn btn-primary" href="#" role="button">Register</a>
+                <p>Kejar Bahasa merupakan platform untuk meningkatkan kemampuan dibidang akademik dengan modul pelatihan terbaik yang ditujukan untuk pelajar, mahasiswa, dan pengajar di Indonesia</p>
+                @if (Auth::check())
+                    <a class="btn btn-primary" href="{{ route('user.dashboard.myclass') }}" role="button">Kelas Saya</a>
+                @else
+                    <a class="btn btn-primary" href="{{ route('register') }}" role="button">Register</a>
+                @endif
             </div>
             <div class="col-md-6 img">
                 <img src="user/image/landingpage.png" class="img-fluid" alt="..."/>
