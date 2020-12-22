@@ -115,15 +115,8 @@
     <div class="container">
         <div class="class-section">
 
-                <div class="card header shadow">
-                    <div class="card-body">
-                        <h1 class="text-white">Kelas</h1>
-                        <h4 class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum voluptates, ratione similique eum deserunt quae reprehenderit aut in consequatur culpa tenetur voluptatum animi labore.</h4>
-                    </div>
-                </div>
-
                 <form action="{{ route('user.class.index') }}" method="GET" id="filterForm">
-                    <div class="row mt-4">
+                    <div class="row">
                         <div class="col-md-3">
                             <div id="accordion">
                                 <div class="card p-4">
@@ -231,10 +224,14 @@
                                             <div class="card-title">
                                                 <h4>{{ $kelas->name }}</h4>
                                             </div>
-                                            <p>{{ substr($kelas->description, 0, 45) }} ...</p>
+                                                <p class="card-text">{{ strlen($kelas->description)>=45?substr($kelas->description, 0, 45).' ...':$kelas->description }}</p>
                                         </div>
-                                        <div class="card-footer text-right">
-                                            <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary">Lihat</a>
+                                        <div class="card-body">
+                                            @if(strlen($kelas->description)<45)
+                                                <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary mt-4">Lihat</a>
+                                            @else
+                                                <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary">Lihat</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
