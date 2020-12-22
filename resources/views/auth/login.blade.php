@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('title', 'Login')
 
 @section('content')
 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
@@ -41,7 +42,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <div class="form-check">
+                            <div class="form-group form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                     {{ old('remember') ? 'checked' : '' }}>
 

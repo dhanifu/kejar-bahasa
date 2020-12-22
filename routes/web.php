@@ -31,6 +31,7 @@ Route::name('user.')->group(function(){
         Route::prefix('profile')->name('profile.')->group(function(){
             Route::get('/', 'HomeController@profile')->name('index');
             Route::put('/{user}/update', 'HomeController@update')->name('update');
+            Route::post('/change-image', 'HomeController@changeImage')->name('changeImage');
             Route::patch('/change-password', 'HomeController@changePassword')->name('changePassword');
         });
     });
