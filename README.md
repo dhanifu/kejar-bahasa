@@ -16,6 +16,12 @@ Kejar Bahasa ​​is a place where you can learn anything online. There are lot
 3. **[Muhammad Ramdhani](https://github.com/dhanifu)**
 4. **[Yarra Raja Seraf](https://github.com/yarrars)**
 
+
+## Screenshot
+
+<img src="https://trello-attachments.s3.amazonaws.com/5fb6098be54908308cfb1642/5fba1894b0d08724bc519488/82b2a25c7a2b69b262633ff022acf00a/image.png" width="500px">
+
+
 ## License
 
 The Kejar Bahasa website is licensed under the [MIT license](https://opensource.org/licenses/MIT).
