@@ -224,7 +224,7 @@
                                             <div class="card-title">
                                                 <h4>{{ $kelas->name }}</h4>
                                             </div>
-                                                <p class="card-text">{{ strlen($kelas->description)>=45?substr($kelas->description, 0, 45).' ...':$kelas->description }}</p>
+                                            <p class="card-text">{{ strlen($kelas->description)>=45?substr($kelas->description, 0, 45).' ...':$kelas->description }}</p>
                                         </div>
                                         <div class="card-body">
                                             @if(strlen($kelas->description)<45)
