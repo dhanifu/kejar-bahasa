@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('title', 'Register')
 
 @section('content')
 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
