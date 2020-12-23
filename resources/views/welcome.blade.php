@@ -127,16 +127,16 @@
     <div class="section1">
         <div class="row">
             <div class="content col-md-6">
-                <h1>Kejar Bahasa</h1>
-                <p>Kejar Bahasa merupakan platform untuk meningkatkan kemampuan dibidang akademik dengan modul pelatihan terbaik yang ditujukan untuk pelajar, mahasiswa, dan pengajar di Indonesia</p>
+                <h1 class="wow fadeInTopLeft">Kejar Bahasa</h1>
+                <p class="wow fadeInBottomLeft" style="visibility: hidden">Kejar Bahasa merupakan platform untuk meningkatkan kemampuan dibidang akademik dengan modul pelatihan terbaik yang ditujukan untuk pelajar, mahasiswa, dan pengajar di Indonesia</p>
                 @if (Auth::check())
-                    <a class="btn btn-primary" href="{{ route('user.dashboard.myclass') }}" role="button">Kelas Saya</a>
+                    <a class="btn btn-primary wow fadeInBottomLeft" style="visibility: hidden" href="{{ route('user.dashboard.myclass') }}" role="button">Kelas Saya</a>
                 @else
-                    <a class="btn btn-primary" href="{{ route('register') }}" role="button">Register</a>
+                    <a class="btn btn-primary wow fadeInBottomLeft" style="visibility: hidden" href="{{ route('register') }}" role="button">Register</a>
                 @endif
             </div>
             <div class="col-md-6 img">
-                <img src="user/image/landingpage.png" class="img-fluid" alt="..."/>
+                <img src="user/image/landingpage.png" class="img-fluid wow fadeInTopRight" style="visibility: hidden" alt="..."/>
             </div>
         </div>
         
@@ -144,9 +144,9 @@
     <div class="section1">
         <div class="row">
             <div class="col-md-6 img">
-                <img src="user/image/landingpage2.png" class="img-fluid" alt="..."/>
+                <img src="user/image/landingpage2.png" class="img-fluid wow fadeInUp" style="visibility: hidden"" alt="..."/>
             </div>
-            <div class="content col-md-6">
+            <div class="content col-md-6 wow fadeInUp" style="visibility: hidden"">
                 <h2>Mulai pelajaran Anda</h2>
                 <h2>from Zero to Hero</h2>
             </div>
@@ -156,77 +156,53 @@
 
     <div class="container" style="margin-top: 110px">
         <div class="class-section">
-            <h1>Kelas Terbaru</h1>
+            <h1 class="wow fadeInDown" style="visibility: hidden">Kelas Terbaru</h1>
+            <hr>
             <div class="row mt-4">
-                <div class="col-md-3 col-sm-6 mb-3">
+                @foreach($classes as $class)
+                @php
+                    $awal = date_create($class->created_at);
+                    $diff = date_diff($awal, date_create());
+                    if (!empty($diff->y)) {
+                        $hasil = "$diff->y Tahun $diff->m Bulan $diff->d Hari";
+                    } elseif (empty($diff->y) && !empty($diff->m)) {
+                        $hasil = "$diff->m Bulan $diff->d Hari";
+                    } elseif (empty($diff->m)) {
+                        $hasil = "$diff->d Hari";
+                    } elseif (empty($diff->d)) {
+                        $hasil = "$diff->h Jam $diff->i Menit";
+                    } elseif (empty($diff->h)) {
+                        $hasil = "$diff->i Menit $diff->s Detik";
+                    } elseif (empty($diff->i)) {
+                        $hasil = "$diff->s Detik";
+                    }
+                @endphp
+                <div class="col-md-3 col-sm-6 mb-3 wow fadeInUp" style="visibility: hidden">
                     <div class="card mb-3 shadow">
-                        <img src="user/image/adinda.jpg" class="card-img-top" alt="...">
+                        <img src="{{ asset("images/class/$class->picture") }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="card-title">
-                                <h4>Judul</h4>
+                                <h4>{{ $class->title }}</h4>
                             </div>
-                            <p>Deskripsi</p>
+                            <p>{{ strlen($class->description)>=45?substr($class->description, 0, 45).' ...':$class->description }}</p>
                         </div>
-                        <div class="card-footer">
-                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
+                        <div class="card-body {{strlen($class->description)<45?'mt-4':''}}">
+                            <small class="my-auto">Dibuat {{ $hasil }} yang lalu</small>
                         </div>
                     </div>
                 </div>
-            
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="card mb-3 shadow">
-                        <img src="user/image/the beatles.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h4>Judul</h4>
-                            </div>
-                            <p>Deskripsi</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="card mb-3 shadow">
-                        <img src="user/image/kopi.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h4>Judul</h4>
-                            </div>
-                            <p>Deskripsi</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="card mb-3 shadow">
-                        <img src="user/image/minder.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h4>Judul</h4>
-                            </div>
-                            <p>Deskripsi</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="my-auto">Dibuat 1 hari yang lalu</small>
-                        </div>
-                    </div>
-                </div>
             </div>      
         </div>
     </div>
 
-    <div class="footer">
+    <div class="footer wow fadeInUp" style="visibility: hidden">
         <h1>Belajar Yuk!</h1>
         <h3 class="mt-4">dunia menunggu Anda untuk</h3>
         <h3>menggapai cita-cita</h3>
         <div class="center mt-4">
-            <a href="#" class="btn btn-primary">Daftar Sekarang</a>
+            <a href="{{ Auth::check()?route('user.dashboard.myclass'):route('register') }}" class="btn btn-primary">{{ Auth::check()?'Lihat Kelasmu':'Daftar Sekarang!' }}</a>
         </div>
     </div>
 @endsection
