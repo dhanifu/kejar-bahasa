@@ -218,7 +218,7 @@
                 
                                 @forelse($classes as $kelas)
                                 <div class="col-md-4 col-sm-6 mb-4">
-                                    <div class="card mb-3 shadow animate__animated animate__fadeInUp">
+                                    <div class="card mb-3 shadow wow fadeInRight" style="visibility: hidden">
                                         <img src="{{ asset('images/class/'.$kelas->picture) }}" class="card-img-top" alt="{{ $kelas->name }}">
                                         <div class="card-body">
                                             <div class="card-title">
@@ -226,12 +226,8 @@
                                             </div>
                                             <p class="card-text">{{ strlen($kelas->description)>=45?substr($kelas->description, 0, 45).' ...':$kelas->description }}</p>
                                         </div>
-                                        <div class="card-body">
-                                            @if(strlen($kelas->description)<45)
-                                                <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary mt-4">Lihat</a>
-                                            @else
-                                                <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary">Lihat</a>
-                                            @endif
+                                        <div class="card-body {{ strlen($kelas->description)<45?'mt-4':'' }}">
+                                            <a href="{{ route('user.class.class', $kelas->code) }}" class="btn btn-primary float-right">Lihat</a>
                                         </div>
                                     </div>
                                 </div>

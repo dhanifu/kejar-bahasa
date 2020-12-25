@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Classs;
 
 class PagesController extends Controller
 {
     public function welcome()
     {
-        return view('welcome');
+        $classes = Classs::orderBy('created_at', 'DESC')->take(4)->get();
+        
+        return view('welcome', compact('classes'));
     }
 
     public function about()

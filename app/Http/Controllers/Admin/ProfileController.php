@@ -46,8 +46,8 @@ class ProfileController extends Controller
         ];
 
         $validator = Validator::make($data, [
-            'password' => 'required',
-            'new-password' => ['required', 'same:new-password', 'min:8', Rule::notIn($this->bannedPasswords())],
+            'password' => 'required|same:password',
+            'new-password' => ['required', 'min:8', Rule::notIn($this->bannedPasswords())],
             'new-password-confirmation' => 'required|same:new-password',
         ], $messages);
 
