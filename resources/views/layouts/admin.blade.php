@@ -19,6 +19,8 @@
     <link href="{{asset('admin/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('admin/dist/css/style.min.css')}}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     @yield('css')
 </head>
 
@@ -93,6 +95,7 @@
     <script src="{{asset('admin/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
     <script src="{{ asset('admin/assets/libs/moment/moment.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/f38b57ad54.js" crossorigin="anonymous"></script>
     @yield('js')
 </body>
 
