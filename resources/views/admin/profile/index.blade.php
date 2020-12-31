@@ -145,7 +145,7 @@
                 <div id="upload-demo"></div>
                 <div style="padding: 3%; margin-top: -15px">
                     <strong>Select image to crop:</strong>
-                    <input type="file" id="image">
+                    <input type="file" id="image" accept=".jpg, .png, .jpeg">
                     <button type="button" class="btn btn-danger btn-block reset-image" style="margin-top:2%" disabled>Reset</button>
                     <button class="btn btn-primary btn-block upload-image" style="margin-top:2%" disabled>Save</button>
                 </div>
@@ -187,18 +187,29 @@
         }
     });
 
+    let fileTypes = ['png', 'jpg', 'jpeg'];
     $('#image').on('change', function () { 
         if ($(this).val()) {
             $('.cr-image').attr('hidden',false);
             let reader = new FileReader();
+            let file = this.files[0];
+            let fileExt = file.type.split('/')[1];
             $('.upload-image').attr('disabled', false)
             $('.reset-image').attr('disabled', false)
-            reader.onload = function (e) {
-                resize.croppie('bind',{
-                    url: e.target.result
-                });
+            if (fileTypes.indexOf(fileExt) !== -1) {
+                reader.onload = function (e) {
+                    resize.croppie('bind',{
+                        url: e.target.result
+                    });
+                }
+                reader.readAsDataURL(file);
+            } else {
+                alert('File not supported');
+                $('#image').val('');
+                $('.cr-image').attr('hidden',true);
+                $('.upload-image').attr('disabled', true);
+                $('.reset-image').attr('disabled', true);
             }
-            reader.readAsDataURL(this.files[0]);
         } else {
             $('.cr-image').attr('hidden',true);
             $('.upload-image').attr('disabled', true);
