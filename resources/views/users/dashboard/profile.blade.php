@@ -19,12 +19,6 @@
 <li class="breadcrumb-item text-muted active">Lihat Profile</li>
 @endsection
 
-@section('button')
-<button class="btn btn-primary btn-sm float-right shadow" onclick="document.location.href='{{route('user.home')}}'">
-    <i class="ti-arrow-left"></i> Kembali
-</button>
-@endsection
-
 @section('content')
 @if (session('success'))
 <div class="alert alert-success alert-dismissible fade show wow slideInDown" role="alert">
@@ -158,7 +152,8 @@
                 <div style="padding: 3%; margin-top: -15px">
                     <strong>Select image to crop:</strong>
                     <input type="file" id="image">
-                    <button class="btn btn-primary btn-block upload-image" style="margin-top:2%">Save</button>
+                    <button type="button" class="btn btn-danger btn-block reset-image" style="margin-top:2%" disabled>Reset</button>
+                    <button class="btn btn-primary btn-block upload-image" style="margin-top:2%" disabled>Save</button>
                 </div>
             </div>
         </div>
@@ -200,15 +195,29 @@
     });
 
     $('#image').on('change', function () { 
-        let reader = new FileReader();
-        reader.onload = function (e) {
-            resize.croppie('bind',{
-                url: e.target.result
-            }).then(function(){
-                console.log('berhasil memasukan gambar');
-            });
+        if ($(this).val()) {
+            $('.cr-image').attr('hidden',false);
+            let reader = new FileReader();
+            $('.upload-image').attr('disabled', false)
+            $('.reset-image').attr('disabled', false)
+            reader.onload = function (e) {
+                resize.croppie('bind',{
+                    url: e.target.result
+                });
+            }
+            reader.readAsDataURL(this.files[0]);
+        } else {
+            $('.cr-image').attr('hidden',true);
+            $('.upload-image').attr('disabled', true);
+            $('.reset-image').attr('disabled', true);
         }
-        reader.readAsDataURL(this.files[0]);
+    });
+
+    $('.reset-image').click(function(e){
+        $('.cr-image').attr('hidden',true);
+        $('#image').val('');
+        $('.upload-image').attr('disabled', true);
+        $('.reset-image').attr('disabled', true);
     });
 
     $('.upload-image').on('click', function (ev) {
