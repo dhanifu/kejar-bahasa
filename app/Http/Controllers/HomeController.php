@@ -7,6 +7,7 @@ use Auth;
 use App\Purchased;
 use App\User;
 use App\Payment;
+use App\Classs;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -46,11 +47,21 @@ class HomeController extends Controller
         }
     }
 
-    public function myClass(){
+    public function myClass(Request $request){
         $user_id = Auth::user()->id;
-        $purchaseds = Purchased::with(['class','user'])
-                        ->where('user_id', $user_id)
-                        ->get();
+        if(!empty($request->search)) {
+            $keyword = $request->search;
+            $purchaseds = Classs::with('purchased','module')->whereHas('purchased', function($q){
+                                $q->where('user_id', Auth::user()->id);
+                            })->where('name','LIKE',"%{$keyword}%")->get();
+        } else {
+            $purchaseds = Classs::with('purchased', 'module')
+                ->whereHas('purchased', function($q){
+                    $q->where('user_id', Auth::user()->id);
+                })->whereHas('module', function($q){
+                    $q->orderBy('sort', 'ASC');
+                })->get();
+        }
         return view('users.dashboard.myclass', compact('purchaseds'));
     }
 
