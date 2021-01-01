@@ -196,7 +196,7 @@ class ClassController extends Controller
                     return redirect()->back();
                 }
                 return view('users.modul', compact(
-                    'class', 'module',
+                    'class', 'module', 'c',
                     'bab', 'classes', 'modul'
                 ));
             } else {

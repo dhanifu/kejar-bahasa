@@ -4,7 +4,7 @@
 @section('style')
     <style>
         .class-section{
-            margin-top:10%;
+            margin-top:7%;
             min-height: 100vh;
         }
 
@@ -70,6 +70,11 @@
 @section('content')
     <div class="class-section">
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center display-6">{{ $c->name }}</h2>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="card mt-4 shadow">
