@@ -45,6 +45,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
+                        @yield('searchBox')
                     </ul>
                     <ul class="navbar-nav float-right">
                         <!-- ============================================================== -->
