@@ -128,15 +128,15 @@
         <div class="row">
             <div class="content col-md-6">
                 <h1 class="wow fadeInTopLeft">Kejar Bahasa</h1>
-                <p class="wow fadeInBottomLeft" style="visibility: hidden">Kejar Bahasa merupakan platform untuk meningkatkan kemampuan dibidang akademik dengan modul pelatihan terbaik yang ditujukan untuk pelajar, mahasiswa, dan pengajar di Indonesia</p>
+                <p class="wow fadeInBottomLeft">Kejar Bahasa merupakan platform untuk meningkatkan kemampuan dibidang akademik dengan modul pelatihan terbaik yang ditujukan untuk pelajar, mahasiswa, dan pengajar di Indonesia</p>
                 @if (Auth::check())
-                    <a class="btn btn-primary wow fadeInBottomLeft" style="visibility: hidden" href="{{ route('user.dashboard.myclass') }}" role="button">Kelas Saya</a>
+                    <a class="btn btn-primary" href="{{ route('user.dashboard.myclass') }}" role="button">Kelas Saya</a>
                 @else
-                    <a class="btn btn-primary wow fadeInBottomLeft" style="visibility: hidden" href="{{ route('register') }}" role="button">Register</a>
+                    <a class="btn btn-primary" href="{{ route('register') }}" role="button">Register</a>
                 @endif
             </div>
             <div class="col-md-6 img">
-                <img src="user/image/landingpage.png" class="img-fluid wow fadeInTopRight" style="visibility: hidden" alt="..."/>
+                <img src="user/image/landingpage.png" class="img-fluid" alt="..."/>
             </div>
         </div>
         
@@ -144,9 +144,9 @@
     <div class="section1">
         <div class="row">
             <div class="col-md-6 img">
-                <img src="user/image/landingpage2.png" class="img-fluid wow fadeInUp" style="visibility: hidden"" alt="..."/>
+                <img src="user/image/landingpage2.png" class="img-fluid"" alt="..."/>
             </div>
-            <div class="content col-md-6 wow fadeInUp" style="visibility: hidden"">
+            <div class="content col-md-6"">
                 <h2>Mulai pelajaran Anda</h2>
                 <h2>from Zero to Hero</h2>
             </div>
@@ -156,7 +156,7 @@
 
     <div class="container" style="margin-top: 110px">
         <div class="class-section">
-            <h1 class="wow fadeInDown" style="visibility: hidden">Kelas Terbaru</h1>
+            <h1 class="wow fadeInDown">Kelas Terbaru</h1>
             <hr>
             <div class="row mt-4">
                 @foreach($classes as $class)
@@ -177,7 +177,7 @@
                         $hasil = "$diff->s Detik";
                     }
                 @endphp
-                <div class="col-md-3 col-sm-6 mb-3 wow fadeInUp" style="visibility: hidden">
+                <div class="col-md-3 col-sm-6 mb-3">
                     <div class="card mb-3 shadow">
                         <img src="{{ asset("images/class/$class->picture") }}" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -197,7 +197,7 @@
         </div>
     </div>
 
-    <div class="footer wow fadeInUp" style="visibility: hidden">
+    <div class="footer">
         <h1>Belajar Yuk!</h1>
         <h3 class="mt-4">dunia menunggu Anda untuk</h3>
         <h3>menggapai cita-cita</h3>

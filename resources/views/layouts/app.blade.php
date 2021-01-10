@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('libs/wow/css/libs/animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('user/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/dist/css/icons/themify-icons/themify-icons.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -190,7 +189,6 @@
 
     <script src="{{asset('admin/assets/libs/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('libs/wow/dist/wow.min.js') }}"></script>
     <script src="https://kit.fontawesome.com/f38b57ad54.js" crossorigin="anonymous"></script>
     <script>
         $(window).scroll(function() {
@@ -201,7 +199,6 @@
                 $('nav').removeClass("sticky" + " shadow-sm");
             }
         });
-        new WOW().init();
     </script>
     @yield('js')
 </body>
