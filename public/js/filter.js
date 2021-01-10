@@ -9,33 +9,10 @@ clear.addEventListener("click", function(){
 });
 
 $(document).ready(function(){
-    if ($('#keyword').val()=="") {
-        $('#x-btn').hide();
-    }else{
-        $('#x-btn').click(function(){
-            $('#keyword').val("");
-            $('#x-btn').hide();
-            if ($(this).val() == "") {
-                $('#list-tab').html('');
-            }
-        });
-    }
-
     $('#keyword').keyup(function(e){
-        $('#x-btn').show();
-        
-        if ($('#keyword').val()=="") {
-            $('#x-btn').hide();
-        }else{
-            $('#x-btn').show();
-            $('#x-btn').click(function(){
-                $('#keyword').val("");
-                $('#x-btn').hide();
-                if ($(this).val() == "") {
-                    $('#list-tab').html('');
-                }
-            });
-        }
+        $('input[type=search]').on('search', function () {
+            $('#list-tab').html('');
+        });
         
 
         $.ajax({
