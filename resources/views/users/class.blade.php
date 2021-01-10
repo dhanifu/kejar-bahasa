@@ -176,12 +176,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" name="keyword" id="keyword" class="form-control" list="classSearchList" autocomplete="off"
+                                            <input type="search" name="keyword" id="keyword" class="form-control" list="classSearchList" autocomplete="off"
                                                 placeholder="&nbsp;&#xF002;&nbsp;&nbsp;Search" style="font-family:FontAwesome,'Source Sans Pro', sans-serif;"
                                                 value="{{ request()->keyword }}">
-                                            <button type="button" class="btn bg-transparent" id="x-btn" style="margin-left: -40px; z-index: 100;">
-                                                <i class="ti-close"></i>
-                                            </button>
                                         </div>
                                         <div id="classSearchList" class="shadow d-none" style="position: absolute; margin-top: 1px; width: 300px; background: #ffffff; !important; z-index: 10;">
                                             <div class="list-group list-group-flush" id="list-tab" role="tablist"></div>
@@ -218,8 +215,11 @@
                 
                                 @forelse($classes as $kelas)
                                 <div class="col-md-4 col-sm-6 mb-4">
-                                    <div class="card mb-3 shadow wow fadeInRight" style="visibility: hidden">
-                                        <img src="{{ asset('images/class/'.$kelas->picture) }}" class="card-img-top" alt="{{ $kelas->name }}">
+                                    <div class="card mb-3 shadow">
+                                        <center>
+                                            <img src="{{ asset('images/class/'.$kelas->picture) }}" class="img-fluid py-2" 
+                                                alt="{{ $kelas->name }}" width="200px">
+                                        </center>
                                         <div class="card-body">
                                             <div class="card-title">
                                                 <h4>{{ $kelas->name }}</h4>

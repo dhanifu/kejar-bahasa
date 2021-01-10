@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 Route::name('user.')->group(function(){
@@ -21,10 +21,10 @@ Route::name('user.')->group(function(){
     Route::get('/about-us', 'PagesController@about')->name('about');
     Route::get('/contact', 'PagesController@contact')->name('contact');
 
-    Route::get('/dashboard', 'HomeController@index')->middleware('role:user')->name('home');
+    Route::get('/dashboard', 'HomeController@index')->middleware(['role:user', 'verified'])->name('home');
 
     //dashboard user
-    Route::prefix('dashboard')->name('dashboard.')->middleware('role:user')->group(function(){
+    Route::prefix('dashboard')->name('dashboard.')->middleware(['role:user', 'verified'])->group(function(){
         Route::get('/myclass', 'HomeController@myClass')->name('myclass');
         route::get('/history', 'HomeController@history')->name('history');
 
@@ -40,8 +40,8 @@ Route::name('user.')->group(function(){
         Route::get('/', 'ClassController@index')->name('index');
         Route::get('/search/class', 'ClassController@searchClass')->name('ajax.searchClass');
         Route::get('/{code}', 'ClassController@class')->name('class');
-        Route::post('/{class}/buy', 'ClassController@beli')->middleware('role:user')->name('beli');
-        Route::get('/{class}/{module}/', 'ClassController@module')->name('module');
+        Route::post('/{class}/buy', 'ClassController@beli')->middleware(['role:user', 'verified'])->name('beli');
+        Route::get('/{class}/{module}/', 'ClassController@module')->middleware(['role:user', 'verified'])->name('module');
     });
 });
 
